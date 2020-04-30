@@ -1,14 +1,9 @@
 <template>
-  <div id="images">
+  <div id="feed-image">
     <div class="container">
-      <div class="button-wrapper">
-        <button class="btn" @click="searchUnsplash('Autumn')">Autumn</button>
-        <button class="btn" @click="searchUnsplash('cliff')">Cliff</button>
-        <button class="btn" @click="searchUnsplash('ocean')">Ocean</button>
-      </div>
-      <stack :column-min-width="300" :gutter-width="15" :gutter-height="15" monitor-images-loaded>
+      <stack :column-min-width="200" :gutter-width="5" :gutter-height="5" monitor-images-loaded>
         <stack-item v-for="(image, i) in images" :key="i" style="transition: transform 300ms">
-          <img :src="image.urls.small" :alt="image.alt_description" />
+          <img class="feed" :src="image.urls.small" :alt="image.alt_description" />
         </stack-item>
       </stack>
     </div>
@@ -20,7 +15,7 @@ import axios from 'axios';
 import { Stack, StackItem } from 'vue-stack-grid';
 
 export default {
-  name: 'images',
+  name: 'feed-image',
   components: {
     Stack,
     StackItem,
@@ -28,55 +23,44 @@ export default {
   data: () => ({
     images: [],
   }),
-  methods: {
-    searchUnsplash(topic) {
-      this.images = [];
-      axios
-        .get(`https://api.unsplash.com/search/photos?query=${topic}&per_page=20`, {
-          headers: {
-            // eslint-disable-next-line quote-props
-            'Authorization': 'Client-ID vnhhzCUP6ZDe-08qTCclbHhnIOqa33g24TgJAzqYDDI',
-            'Accept-Version': 'v1',
-          },
-        })
-        .then((response) => {
-          this.images = response.data.results;
-        })
-        .catch(() => {
-          this.images = [];
-        });
-    },
+  created() {
+    this.images = [];
+    axios
+      .get('https://api.unsplash.com/search/photos?query=Autumn&per_page=50', {
+        headers: {
+          // eslint-disable-next-line quote-props
+          'Authorization': 'Client-ID vnhhzCUP6ZDe-08qTCclbHhnIOqa33g24TgJAzqYDDI',
+          'Accept-Version': 'v1',
+        },
+      })
+      .then((response) => {
+        this.images = response.data.results;
+      })
+      .catch(() => {
+        this.images = [];
+      });
   },
 };
 </script>
 <style>
-#app {
+#feed-image {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 2vh;
 }
 .container {
-  width: 80vw;
+  width: 100vw;
   margin: 0 auto;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
 }
-.button-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 25px;
-}
-.btn {
-  font-size: 18px;
-  background-color: #42b983;
-  color: white;
-  padding: 10px 20px;
-}
-.btn:not(:last-child) {
-  margin-right: 10px;
-}
-img {
+.feed {
   width: 100%;
   height: auto;
   border-radius: 12px;
