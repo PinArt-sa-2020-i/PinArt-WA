@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/Logo.png" />
+    <img alt="Vue logo" src="../assets/logo.svg" />
     <p>{{ isLogged }}</p>
     <button @click="login">Login</button>
     <HelloWorld msg="Welcome to Your Vue.js App" />
