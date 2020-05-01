@@ -23,6 +23,11 @@ const routes = [
     name: 'Feed',
     component: () => import('../views/Feed.vue'),
   },
+  {
+    path: '/user',
+    name: 'User',
+    component: () => import('../views/User.vue'),
+  },
 ];
 
 const router = new VueRouter({
