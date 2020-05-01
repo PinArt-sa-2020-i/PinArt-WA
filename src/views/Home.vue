@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <p> {{isLogged}}</p>
-    <button @click="login"> Login</button>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="../assets/Logo.png" />
+    <p>{{ isLogged }}</p>
+    <button @click="login">Login</button>
+    <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
 </template>
 
