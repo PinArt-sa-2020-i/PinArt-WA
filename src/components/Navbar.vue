@@ -1,5 +1,5 @@
 <template>
-  <b-navbar toggleable="lg" type="light" variant="light" sticky="true">
+  <b-navbar toggleable="lg" type="light" variant="light" sticky="sticky">
     <b-navbar-brand href="/"
       ><img width="40vw" height="40vh" src="../assets/Logo.png"
     /></b-navbar-brand>
@@ -22,7 +22,7 @@
         <b-avatar
           class="align-top"
           button
-          @click="onClick"
+          @click="avatarView"
           size="md"
           variant="secondary"
         ></b-avatar>
@@ -43,7 +43,14 @@ export default {
   name: 'navbar',
   data: () => ({
     logo: '/assets/images/Logo.png',
+    sticky: true,
   }),
+  methods: {
+    avatarView() {
+      // eslint-disable-next-line no-console
+      console.log('routing to avatar view');
+    },
+  },
 };
 </script>
 
