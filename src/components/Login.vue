@@ -30,8 +30,8 @@ export default {
   },
   data() {
     return {
-      username: 'john',
-      password: 'doe',
+      username: null,
+      password: null,
       dispositivo: 'pc',
     };
   },

@@ -43,5 +43,8 @@ export default new Vuex.Store({
       state.image = value;
     },
   },
+  getters: {
+    [constants.SESSION_IS_LOGGED]: (state) => !!state.token,
+  },
   modules: {},
 });

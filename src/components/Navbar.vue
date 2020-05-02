@@ -1,15 +1,15 @@
 <template>
   <b-navbar toggleable="lg" type="light" variant="light" sticky="sticky">
     <b-navbar-brand href="/"
-      ><img width="40vw" height="40vh" src="../assets/Logo.png"
+    ><img width="40vw" height="40vh" src="../assets/Logo.png"
     /></b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item href="/">Inicio</b-nav-item>
-        <b-nav-item href="/feed">Siguiendo</b-nav-item>
+        <b-nav-item @click="$router.push('Home')">Inicio</b-nav-item>
+        <b-nav-item @click="$router.push('Feed')">Siguiendo</b-nav-item>
       </b-navbar-nav>
 
       <div class="search">
@@ -29,7 +29,7 @@
 
         <b-nav-item-dropdown right>
           <!-- Using 'button-content' slot -->
-          <template v-slot:button-content> </template>
+          <template v-slot:button-content></template>
           <b-dropdown-item href="#">Profile</b-dropdown-item>
           <b-dropdown-item href="#">Sign Out</b-dropdown-item>
         </b-nav-item-dropdown>
@@ -55,20 +55,22 @@ export default {
 </script>
 
 <style>
-.search {
-  width: 70vw;
-  margin-right: 2vw;
-}
-.search > input {
-  background-image: url('http://www.clker.com/cliparts/z/1/T/u/9/2/search-icon-hi.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  text-indent: 20px;
-  width: 70vw !important;
-}
-.form-control {
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  border-radius: 50px;
-}
+  .search {
+    width: 70vw;
+    margin-right: 2vw;
+  }
+
+  .search > input {
+    background-image: url('http://www.clker.com/cliparts/z/1/T/u/9/2/search-icon-hi.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    text-indent: 20px;
+    width: 70vw !important;
+  }
+
+  .form-control {
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+  }
 </style>
