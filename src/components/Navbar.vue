@@ -8,8 +8,8 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item href="/">Inicio</b-nav-item>
-        <b-nav-item href="/feed">Siguiendo</b-nav-item>
+        <b-nav-item @click="$router.push('Home')">Inicio</b-nav-item>
+        <b-nav-item @click="$router.push('Feed')">Siguiendo</b-nav-item>
       </b-navbar-nav>
 
       <div class="search">
@@ -55,20 +55,22 @@ export default {
 </script>
 
 <style>
-.search {
-  width: 70vw;
-  margin-right: 2vw;
-}
-.search > input {
-  background-image: url('http://www.clker.com/cliparts/z/1/T/u/9/2/search-icon-hi.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  text-indent: 20px;
-  width: 70vw !important;
-}
-.form-control {
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  border-radius: 50px;
-}
+  .search {
+    width: 70vw;
+    margin-right: 2vw;
+  }
+
+  .search > input {
+    background-image: url('http://www.clker.com/cliparts/z/1/T/u/9/2/search-icon-hi.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    text-indent: 20px;
+    width: 70vw !important;
+  }
+
+  .form-control {
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+  }
 </style>
