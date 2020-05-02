@@ -4,6 +4,7 @@ export const GET_IMAGE = 'GET_IMAGE';
 
 // Mutations
 export const SESSION_SET_LOGGED = 'SESSION_SET_LOGGED';
+export const SESSION_SET_PROPERTY = 'SESSION_SET_PROPERTY';
 export const SET_IMAGE = 'SET_IMAGE';
 
 // Getters

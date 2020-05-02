@@ -1,12 +1,9 @@
 <template>
   <div class="hello">
-<!--    <div v-for="label in getAllLabels" :key="label.id">
-      {{label.name}}
-    </div>-->
     <ApolloMutation
       :mutation="require('../graphql/authenticateUser.gql')"
       :variables="{username, password, dispositivo}"
-      @done="login"
+      @done="onLogin"
     >
       <template v-slot="{ mutate, error }">
         <form v-on:submit.prevent="mutate()">
@@ -23,8 +20,11 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+import * as constants from '@/store/constants';
+
 export default {
-  name: 'HelloWorld',
+  name: 'Login',
   props: {
     msg: String,
   },
@@ -36,9 +36,13 @@ export default {
     };
   },
   methods: {
-    login() {
-      // eslint-disable-next-line no-console
-      console.log('done mutation');
+    ...mapActions({
+      login: constants.SESSION_LOGIN,
+    }),
+    onLogin(data) {
+      if (data.data.authenticateUser.token) {
+        this.login(data.data.authenticateUser);
+      }
     },
   },
 };
