@@ -34,6 +34,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "dashboard" */ '@/views/Feed.vue'),
     beforeEnter: requireAuth,
   },
+  {
+    path: '/user',
+    name: 'User',
+    component: () => import('../views/User.vue'),
+  },
 ];
 
 const router = new VueRouter({

@@ -1,7 +1,7 @@
 <template>
   <b-navbar toggleable="lg" type="light" variant="light" sticky="sticky">
     <b-navbar-brand href="/"
-    ><img width="40vw" height="40vh" src="../assets/Logo.png"
+      ><img width="40vw" height="40vh" src="../assets/logo.svg"
     /></b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -29,8 +29,8 @@
 
         <b-nav-item-dropdown right>
           <!-- Using 'button-content' slot -->
-          <template v-slot:button-content></template>
-          <b-dropdown-item href="#">Profile</b-dropdown-item>
+          <template v-slot:button-content> </template>
+          <b-dropdown-item href="/user">Profile</b-dropdown-item>
           <b-dropdown-item href="#">Sign Out</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
