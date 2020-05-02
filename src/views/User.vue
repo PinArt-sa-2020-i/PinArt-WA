@@ -1,11 +1,11 @@
 <template>
   <div class="home">
 
-   <div class="pin-user__profile">
-     <div class="pin-user__header-wrapper">
-       <div class="pin-user__header-left">
+   <div class="user__profile">
+     <div class="user__header-wrapper">
+       <div class="user__header-left">
          <h1>Jungkook</h1>
-         <div  class="pin-user__follow">
+         <div  class="user__follow">
            <div>
              <p>6</p>
              <h6>Seguidores</h6>
@@ -16,19 +16,19 @@
            </div>
          </div>
        </div>
-       <div class="pin-user__header-right">
+       <div class="user__header-right">
          <figure class="image is-128x128">
           <img src="//i.imgur.com/XTNBAGt.jpg" class="is-rounded" >
          </figure>
        </div>
      </div>
-     <div class="pin-user__profile-content">
+     <div class="user__profile-content">
        <h3>Pins</h3>
-       <div class="pin-user__pins">
-         <pin-card class="pin-card--create" @click.native="isActive = true" :hasOverlay="false">
-           <div class="pin-card__content">
-             <div class="pin-card__create-icon">
-               <svg class="pin-svg__icon" height="40" width="40" viewBox="0 0 24 24"><title></title>
+       <div class="user__pins">
+         <pin-card class="card--create" @click.native="isActive = true" :hasOverlay="false">
+           <div class="card__content">
+             <div class="card__create-icon">
+               <svg class="svg__icon" height="40" width="40" viewBox="0 0 24 24"><title></title>
                  <path d="M17.75,
                  13.25 L13.25,
                  13.25 L13.25,
