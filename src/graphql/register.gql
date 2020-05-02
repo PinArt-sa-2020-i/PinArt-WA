@@ -1,0 +1,12 @@
+mutation register{
+  registerUser(
+    register:{
+      firstName: "testUser"
+      lastName: "lastname"
+      username: "john"
+      password: "doe"
+    }
+  ){
+    id
+  }
+}
