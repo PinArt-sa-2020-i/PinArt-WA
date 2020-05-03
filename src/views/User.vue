@@ -1,7 +1,100 @@
 <template>
   <div class="home">
-
-   <div class="user__profile">
+    <div class="columns">
+      <div class="container profile">
+        <div class="modal" id="edit-preferences-modal">
+          <div class="modal-background"></div>
+          <div class="modal-card">
+            <header class="modal-card-head">
+              <p class="modal-card-title">Editar Perfil</p>
+              <Button class="delete"></Button>
+            </header>
+          </div>
+        </div>
+        <div class="section profile-heading">
+          <div class="columns is-mobile is-multiline">
+            <div class="column is-2">
+              <span class="header-icon user-profile-image">
+                <img src="https://i.imgur.com/XTNBAGt.jpg">
+              </span>
+            </div>
+            <div class="column is-4-tablet is-10-mobile name">
+              <p>
+                <span class="title is-bold">Tom Perez</span>
+                <br/>
+                <a class="button is-primary is-outlined" href="#" id="edit-preferences"
+                   style="margin: 5px 0">
+                  Editar Perfil
+                </a>
+                <br/>
+              </p>
+              <p class="tagline">
+                La descripcion iria aca
+              </p>
+            </div>
+            <div class="column is-2-tablet is-4-mobile has-text-centered">
+              <p class="stat-val">30</p>
+              <p class="stat-key">Seguidores</p>
+            </div>
+            <div class="column is-2-tablet is-4-mobile has-text-centered">
+              <p class="stat-val">0</p>
+              <p class="stat-key">Tableros</p>
+            </div>
+            <div class="column is-2-tablet is-4-mobile has-text-centered">
+              <p class="stat-val">3</p>
+              <p class="stat-key">Pines</p>
+            </div>
+          </div>
+        </div>
+        <div class="profile-options is-fullwidth">
+          <div class="tabs is-fullwidth is-medium">
+            <ul>
+              <li class="link">
+                <a>
+              <span class="icon">
+                <i class="fa fa-list"></i>
+              </span>
+                  <span>Tableros</span>
+                </a>
+              </li>
+              <li class="link is-active">
+                <a>
+                  <span>Pines</span>
+                </a>
+              </li>
+              <li class="link">
+                <a>
+                  <span>Seguidores</span>
+                </a>
+              </li>
+<!--              <li class="link">
+                <a>
+                  <span>Etiquetas</span>
+                </a>
+              </li>-->
+            </ul>
+          </div>
+        </div>
+        <div class="columns is-mobile">
+<!--          Ejemplo tablero-->
+          <div class="column is-3-tablet is-6-mobile">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <img src="http://placehold.it/300x225"/>
+                </figure>
+              </div>
+              <div class="card-content">
+                <span class="tag is-dark subtitle">#1</span>
+                <p>Personal Notes on the Property </p>
+              </div>
+            </div>
+          </div>
+          <br/>
+        </div>
+      </div>
+    </div>
+  <!-- <div class="user__profile">
      <div class="user__header-wrapper">
        <div class="user__header-left">
          <h1>Example</h1>
@@ -24,7 +117,7 @@
      </div>
      <div class="user__profile-content">
        <h3>Pins</h3>
-      <!-- <div class="user__pins">
+      &lt;!&ndash; <div class="user__pins">
          <pin-card class="card&#45;&#45;create" @click.native="isActive = true" :hasOverlay="false">
            <div class="card__content">
              <div class="card__create-icon">
@@ -76,9 +169,9 @@
            </div>
            <h5 slot="meta">Create Pin</h5>
          </pin-card>
-       </div>-->
+       </div>&ndash;&gt;
      </div>
-    </div>
+    </div>-->
 
   </div>
 
