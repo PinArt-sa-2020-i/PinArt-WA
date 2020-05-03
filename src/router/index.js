@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
+import Info from '../views/Info.vue';
 
 Vue.use(VueRouter);
 
@@ -19,9 +20,22 @@ const routes = [
     component: () => import('../views/About.vue'),
   },
   {
-    path: '/feed',
-    name: 'Feed',
-    component: () => import('../views/Feed.vue'),
+    path: '/tagfeed',
+    name: 'TagFeed',
+    component: () => import('../views/TagsFeed.vue'),
+  },
+  {
+    path: '/usersfeed',
+    name: 'UsersFeed',
+    component: () => import('../views/UsersFeed.vue'),
+  },
+  {
+    path: '/info',
+    name: 'ImageInfo',
+    component: Info,
+    props: {
+      image: 'a',
+    },
   },
 ];
 

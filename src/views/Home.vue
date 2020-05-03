@@ -1,9 +1,10 @@
 <template>
   <div class="home">
+    <p>{{isLogged}}</p>
     <Login v-if="!isLogged"></Login>
     <div v-else>
-      <img alt="Vue logo" src="../assets/Logo.png"/>
-      <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <img alt="Vue logo" src="../assets/Logo.png" />
+      <HelloWorld msg="Welcome to Your Vue.js App" />
     </div>
   </div>
 </template>
