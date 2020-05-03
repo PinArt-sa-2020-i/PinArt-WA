@@ -1,9 +1,22 @@
 <template>
   <div id="feed-image">
     <div class="container">
+      <ApolloQuery
+        :query="require('../graphql/getTagsFeed.gql')"
+        :variables="{ userId }"
+        :context="{ headers : {Authorization : token}}"
+      >
+        <template v-slot="{ result: { loading, error, data } }">
+          <div
+            v-if="data"
+            class="result apollo"
+            style="display: none"
+          >{{ images = data.getTagsFeed }}</div>
+        </template>
+      </ApolloQuery>
       <stack :column-min-width="200" :gutter-width="5" :gutter-height="5" monitor-images-loaded>
         <stack-item v-for="(image, i) in images" :key="i" style="transition: transform 300ms">
-          <img class="feed" :src="image.urls.small" :alt="image.alt_description" />
+          <img class="feed" :src="image.url" :alt="image.__typename" />
         </stack-item>
       </stack>
     </div>
@@ -11,8 +24,8 @@
 </template>
 
 <script>
-import axios from 'axios';
 import { Stack, StackItem } from 'vue-stack-grid';
+import { mapState } from 'vuex';
 
 export default {
   name: 'feed-image',
@@ -20,25 +33,17 @@ export default {
     Stack,
     StackItem,
   },
+  props: {
+    labels: [],
+  },
   data: () => ({
     images: [],
   }),
-  created() {
-    this.images = [];
-    axios
-      .get('https://api.unsplash.com/search/photos?query=Autumn&per_page=50', {
-        headers: {
-          // eslint-disable-next-line quote-props
-          'Authorization': 'Client-ID vnhhzCUP6ZDe-08qTCclbHhnIOqa33g24TgJAzqYDDI',
-          'Accept-Version': 'v1',
-        },
-      })
-      .then((response) => {
-        this.images = response.data.results;
-      })
-      .catch(() => {
-        this.images = [];
-      });
+  computed: {
+    ...mapState({
+      userId: (state) => String(state.id),
+      token: (state) => state.token,
+    }),
   },
 };
 </script>
