@@ -1,17 +1,9 @@
-query getUserById($id: Int!){
-  getUserById (id: $id ) {
-    id,
-    username,
-    firstName,
-    lastName,
-    correo,
-    profiles{
-   		foto,
-    	fechaNacimiento,
-    	genero,
-    	descripcion,
-    	noTelefono,
-    	edad
-    }
+query userById($id: Int!){
+  userById (id: $id ) {
+    id
+    username
+    firstName
+    lastName
+    correo
   }
 }
