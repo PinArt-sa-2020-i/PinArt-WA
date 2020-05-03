@@ -1,31 +1,19 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/Logo.png" />
-    <p>{{ isLogged }}</p>
-    <button @click="login">Login</button>
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <Login v-if="!isLogged"></Login>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
-import { mapState, mapActions } from 'vuex';
-import * as constants from '@/store/constants';
+import { mapState } from 'vuex';
+import Login from '@/components/Login.vue';
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld,
+    Login,
   },
   computed: {
     ...mapState({
       isLogged: (state) => state.logged,
-    }),
-  },
-  methods: {
-    ...mapActions({
-      login: constants.SESSION_LOGIN,
     }),
   },
 };

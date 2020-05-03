@@ -1,8 +1,17 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from '@/store';
 import Home from '../views/Home.vue';
 
 Vue.use(VueRouter);
+
+const requireAuth = (to, from, next) => {
+  if (!store.getters.SESSION_IS_LOGGED) {
+    next({ name: 'Home' });
+  } else {
+    next();
+  }
+};
 
 const routes = [
   {
@@ -16,12 +25,14 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('../views/About.vue'),
+    component: () => import(/* webpackChunkName: "dashboard" */ '@/views/About.vue'),
+    beforeEnter: requireAuth,
   },
   {
     path: '/feed',
     name: 'Feed',
-    component: () => import('../views/Feed.vue'),
+    component: () => import(/* webpackChunkName: "dashboard" */ '@/views/Feed.vue'),
+    beforeEnter: requireAuth,
   },
 ];
 

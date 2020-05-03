@@ -9,10 +9,22 @@ export default new Vuex.Store({
   state: {
     logged: false,
     image: '',
+    username: null,
+    firstName: null,
+    lastName: null,
+    token: null,
+    id: null,
+
   },
   actions: {
-    [constants.SESSION_LOGIN]: ({ commit }) => {
-      commit(constants.SESSION_SET_LOGGED, true);
+    // eslint-disable-next-line no-unused-vars
+    [constants.SESSION_LOGIN]: ({ commit }, userInfo) => {
+      commit(constants.SESSION_SET_PROPERTY, { username: userInfo.username });
+      commit(constants.SESSION_SET_PROPERTY, { firstName: userInfo.firstName });
+      commit(constants.SESSION_SET_PROPERTY, { lastName: userInfo.lastName });
+      commit(constants.SESSION_SET_PROPERTY, { token: userInfo.token });
+      commit(constants.SESSION_SET_PROPERTY, { id: userInfo.id });
+      commit(constants.SESSION_SET_PROPERTY, { logged: true });
     },
     [constants.GET_IMAGE]: ({ commit }) => {
       axios
@@ -22,12 +34,17 @@ export default new Vuex.Store({
     },
   },
   mutations: {
-    [constants.SESSION_SET_LOGGED]: (state, value) => {
-      state.logged = value;
+    // eslint-disable-next-line no-shadow
+    [constants.SESSION_SET_PROPERTY]: (state, data) => {
+      const [[property, value]] = Object.entries(data);
+      state[property] = value;
     },
     [constants.SET_IMAGE]: (state, value) => {
       state.image = value;
     },
+  },
+  getters: {
+    [constants.SESSION_IS_LOGGED]: (state) => !!state.token,
   },
   modules: {},
 });

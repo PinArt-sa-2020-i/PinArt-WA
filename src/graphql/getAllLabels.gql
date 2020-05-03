@@ -1,0 +1,8 @@
+query getAllLabels{
+  getAllLabels{
+    id
+    name
+    description
+    relatedLabels
+  }
+}
