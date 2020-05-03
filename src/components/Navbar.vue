@@ -49,20 +49,22 @@ export default {
 </script>
 
 <style>
-.search {
-  width: 70vw;
-  margin-right: 2vw;
-}
-.search > input {
-  background-image: url('http://www.clker.com/cliparts/z/1/T/u/9/2/search-icon-hi.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  text-indent: 20px;
-  width: 70vw !important;
-}
-.form-control {
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  border-radius: 50px;
-}
+  .search {
+    width: 70vw;
+    margin-right: 2vw;
+  }
+
+  .search > input {
+    background-image: url('http://www.clker.com/cliparts/z/1/T/u/9/2/search-icon-hi.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    text-indent: 20px;
+    width: 70vw !important;
+  }
+
+  .form-control {
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+  }
 </style>
