@@ -37,7 +37,8 @@ const routes = [
   {
     path: '/user',
     name: 'User',
-    component: () => import('../views/User.vue'),
+    component: () => import(/* webpackChunkName: "dashboard" */'@/views/User.vue'),
+    beforeEnter: requireAuth,
   },
 ];
 

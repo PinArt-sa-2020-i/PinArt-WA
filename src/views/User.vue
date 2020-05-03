@@ -4,7 +4,7 @@
    <div class="user__profile">
      <div class="user__header-wrapper">
        <div class="user__header-left">
-         <h1>Jungkook</h1>
+         <h1>Example</h1>
          <div  class="user__follow">
            <div>
              <p>6</p>
@@ -24,8 +24,8 @@
      </div>
      <div class="user__profile-content">
        <h3>Pins</h3>
-       <div class="user__pins">
-         <pin-card class="card--create" @click.native="isActive = true" :hasOverlay="false">
+      <!-- <div class="user__pins">
+         <pin-card class="card&#45;&#45;create" @click.native="isActive = true" :hasOverlay="false">
            <div class="card__content">
              <div class="card__create-icon">
                <svg class="svg__icon" height="40" width="40" viewBox="0 0 24 24"><title></title>
@@ -76,10 +76,13 @@
            </div>
            <h5 slot="meta">Create Pin</h5>
          </pin-card>
-       </div>
+       </div>-->
      </div>
     </div>
 
   </div>
 
 </template>
+
+<script>
+</script>
