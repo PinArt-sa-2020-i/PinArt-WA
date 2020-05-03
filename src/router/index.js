@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '@/store';
 import Home from '../views/Home.vue';
+import Info from '../views/Info.vue';
 
 Vue.use(VueRouter);
 
@@ -29,10 +30,25 @@ const routes = [
     beforeEnter: requireAuth,
   },
   {
-    path: '/feed',
-    name: 'Feed',
-    component: () => import(/* webpackChunkName: "dashboard" */ '@/views/Feed.vue'),
+    path: '/tagfeed',
+    name: 'TagFeed',
+    component: () => import('../views/TagsFeed.vue'),
     beforeEnter: requireAuth,
+  },
+  {
+    path: '/usersfeed',
+    name: 'UsersFeed',
+    component: () => import('../views/UsersFeed.vue'),
+    beforeEnter: requireAuth,
+  },
+  {
+    path: '/info',
+    name: 'ImageInfo',
+    component: Info,
+    beforeEnter: requireAuth,
+    props: {
+      image: 'a',
+    },
   },
 ];
 

@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import axios from 'axios';
 import * as constants from '@/store/constants';
 
 Vue.use(Vuex);
@@ -8,13 +7,12 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     logged: false,
-    image: '',
     username: null,
     firstName: null,
     lastName: null,
     token: null,
     id: null,
-
+    selected_image: {},
   },
   actions: {
     // eslint-disable-next-line no-unused-vars
@@ -26,11 +24,8 @@ export default new Vuex.Store({
       commit(constants.SESSION_SET_PROPERTY, { id: userInfo.id });
       commit(constants.SESSION_SET_PROPERTY, { logged: true });
     },
-    [constants.GET_IMAGE]: ({ commit }) => {
-      axios
-        .get('https://picsum.photos/id/0/info')
-        .then((response) => response.data)
-        .then((image) => commit(constants.SET_IMAGE, image.download_url));
+    [constants.GET_IMAGE]: ({ commit }, image) => {
+      commit(constants.SET_IMAGE, { selected_image: image });
     },
   },
   mutations: {
@@ -39,8 +34,8 @@ export default new Vuex.Store({
       const [[property, value]] = Object.entries(data);
       state[property] = value;
     },
-    [constants.SET_IMAGE]: (state, value) => {
-      state.image = value;
+    [constants.SET_IMAGE]: (state, data) => {
+      state[this.selected_image] = data;
     },
   },
   getters: {

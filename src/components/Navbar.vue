@@ -1,15 +1,15 @@
 <template>
   <b-navbar toggleable="lg" type="light" variant="light" sticky="sticky">
-    <b-navbar-brand href="/"
-    ><img width="40vw" height="40vh" src="../assets/Logo.png"
-    /></b-navbar-brand>
+    <b-navbar-brand @click="$router.push('/')">
+      <img width="40vw" height="40vh" src="../assets/Logo.png" />
+    </b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item @click="$router.push('Home')">Inicio</b-nav-item>
-        <b-nav-item @click="$router.push('Feed')">Siguiendo</b-nav-item>
+        <b-nav-item @click="$router.push('TagFeed')">Inicio</b-nav-item>
+        <b-nav-item @click="$router.push('UsersFeed')">Siguiendo</b-nav-item>
       </b-navbar-nav>
 
       <div class="search">
@@ -19,13 +19,7 @@
       </div>
       <!-- Right aligned nav items -->
       <b-navbar-nav>
-        <b-avatar
-          class="align-top"
-          button
-          @click="avatarView"
-          size="md"
-          variant="secondary"
-        ></b-avatar>
+        <b-avatar class="align-top" button @click="avatarView" size="md"></b-avatar>
 
         <b-nav-item-dropdown right>
           <!-- Using 'button-content' slot -->

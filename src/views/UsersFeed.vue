@@ -1,23 +1,28 @@
 <template>
   <div class="home">
-    <Images />
+    <UsersImages />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Images from '@/components/Images.vue';
+import UsersImages from '@/components/UsersImages.vue';
 import { mapState, mapActions } from 'vuex';
 import * as constants from '@/store/constants';
 
 export default {
-  name: 'Feed',
+  name: 'UsersFeed',
   components: {
-    Images,
+    UsersImages,
+  },
+  data() {
+    return {
+      labels: [],
+    };
   },
   computed: {
     ...mapState({
-      isImage: (state) => state.image,
+      userId: (state) => state.id,
     }),
   },
   methods: {
