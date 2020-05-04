@@ -7,12 +7,17 @@
   >
     <template v-slot="{ mutate, error }">
       <form v-on:submit.prevent="">
+        <div class="form-group">
+          <input v-model="descripcion" class="form-control control" type="text" id="descripcion"
+                 placeholder="Descripcion de la imagen">
+        </div>
         <input @change="onUpload" type="file"/>
-        <button @click="mutateNow" class="btn btn-primary"> Upload</button>
+        <button @click="mutateNow" class="btn btn-primary">Upload</button>
       </form>
       <p v-if="error">An error occurred: {{ error }}</p>
     </template>
   </ApolloMutation>
+
 </template>
 
 <script>
@@ -23,8 +28,8 @@ export default {
   data() {
     return {
       image: null,
-      descripcion: 'minino',
-      idEtiquetas: ['1'],
+      descripcion: null,
+      idEtiquetas: [''],
     };
   },
   methods: {

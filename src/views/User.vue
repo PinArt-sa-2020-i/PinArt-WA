@@ -13,7 +13,6 @@
               <Profile />
               <div>
                 <b-button v-b-modal.modal-no-backdrop>Agregar Multimedia</b-button>
-
                 <b-modal id="modal-no-backdrop"
                          hide-backdrop content-class="shadow" title="Subir Multimedia">
                   <p class="my-2">
