@@ -11,6 +11,7 @@ import Profile from '@/components/Profile.vue';
 import { mapState, mapActions } from 'vuex';
 import * as constants from '@/store/constants';
 
+
 export default {
   name: 'UsersFeed',
   components: {
