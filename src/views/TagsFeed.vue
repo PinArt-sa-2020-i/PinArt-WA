@@ -29,6 +29,12 @@ export default {
     ...mapActions({
       image: constants.GET_IMAGE,
     }),
+    checkUserLabels() {
+
+    },
+  },
+  created() {
+
   },
 };
 </script>
