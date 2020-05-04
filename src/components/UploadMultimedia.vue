@@ -61,7 +61,7 @@ export default {
   computed: {
     ...mapState({
       token: (state) => state.token,
-      idUser: (state) => state.id,
+      idUser: (state) => String(state.id),
     }),
   },
 };
