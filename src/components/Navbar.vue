@@ -12,7 +12,7 @@
     </ApolloQuery>
     <b-navbar-brand @click="$router.push('/')">
     </b-navbar-brand>
-      <img width="40vw" height="40vh" src="../assets/Logo.png" />
+      <img width="40vw" height="40vh" src="../assets/logo.svg" />
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
