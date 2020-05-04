@@ -1,6 +1,10 @@
 <template>
   <div class="home">
-    <ImageInfo />
+    <ImageInfo
+      :image="otherProp.image"
+      :creatorId="Number(otherProp.image.usuario_creador_id)"
+      :previous="otherProp.previous"
+    />
   </div>
 </template>
 
@@ -12,6 +16,12 @@ export default {
   name: 'Home',
   components: {
     ImageInfo,
+  },
+  props: {
+    otherProp: {
+      type: Object,
+      required: true,
+    },
   },
 };
 </script>

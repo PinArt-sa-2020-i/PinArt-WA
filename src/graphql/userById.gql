@@ -1,7 +1,8 @@
-query userById($userId: String!) {
-  userById(idUsuario: $userId) {
+query userById($creatorId: Int!) {
+  userById(id: $creatorId) {
     firstName
     lastName
     correo
+    username
   }
 }
