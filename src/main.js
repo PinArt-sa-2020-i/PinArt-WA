@@ -2,17 +2,31 @@ import Vue from 'vue';
 import bootstrapvue from 'bootstrap-vue';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'primevue/resources/primevue.min.css';
+import 'primevue/resources/themes/nova-light/theme.css';
+import 'primeicons/primeicons.css';
 import 'bulma';
+import './assets/css/index.scss';
+import Toast from 'primevue/toast';
+import ToastService from 'primevue/toastservice';
+import Listbox from 'primevue/listbox';
+import FileUpload from 'primevue/fileupload';
+import Calendar from 'primevue/calendar';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import './assets/css/index.scss';
 import { createProvider } from './vue-apollo';
 
 
 Vue.config.productionTip = false;
 
 Vue.use(bootstrapvue);
+Vue.component('Toast', Toast);
+Vue.use(ToastService);
+Vue.use('Listbox', Listbox);
+Vue.use('Calendar', Calendar);
+Vue.use('FileUpload', FileUpload);
+
 
 new Vue({
   router,
