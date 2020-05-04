@@ -15,7 +15,7 @@ import UploadMultimedia from '@/components/UploadMultimedia.vue';
 
 
 export default {
-  name: 'UsersFeed',
+  name: 'User',
   components: {
     Profile,
     UploadMultimedia,
