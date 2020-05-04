@@ -16,7 +16,7 @@
       </form>
       <Button label="Success" class="p-button-success" @click="showSuccess" />
       <p v-if="error">An error occurred: {{ error }}</p>
-      <TagUser />
+      <AllTag />
     </template>
   </ApolloMutation>
 
@@ -24,12 +24,12 @@
 
 <script>
 import { mapState } from 'vuex';
-import TagUser from '@/components/TagUser.vue';
+import AllTag from '@/components/AllTag.vue';
 
 export default {
   name: 'Upload',
   components: {
-    TagUser,
+    AllTag,
   },
   data() {
     return {

@@ -1,5 +1,5 @@
 <template>
-  <div id="feed-image">
+  <div id="profile">
     <div class="container">
       <ApolloQuery
         :query="require('../graphql/getUserById.gql')"
@@ -15,9 +15,7 @@
           </div>
         </template>
       </ApolloQuery>
-      <div class="home">
-        <div class="columns">
-          <div class="container profile">
+         <div class="container profile">
             <div class="modal" id="edit-preferences-modal">
               <div class="modal-background"></div>
               <div class="modal-card">
@@ -48,7 +46,13 @@
                     La descripcion iria aca
                   </p>
                   <br/>
-                  <UploadMultimedia />
+                  <b-button v-b-modal.modal-no-backdrop>Agregar Multimedia</b-button>
+                  <b-modal id="modal-no-backdrop"
+                           hide-backdrop content-class="shadow" title="Subir Multimedia">
+                    <p class="my-2">
+                      <UploadMultimedia />
+                    </p>
+                  </b-modal>
                 </div>
                 <div class="column is-2-tablet is-4-mobile has-text-centered">
                   <p class="stat-val">30</p>
@@ -112,8 +116,6 @@
               <br/>
             </div>
           </div>
-        </div>
-      </div>
   </div>
   </div>
 </template>
@@ -123,7 +125,7 @@ import { mapState } from 'vuex';
 import UploadMultimedia from '@/components/UploadMultimedia.vue';
 
 export default {
-  name: 'Profile',
+  name: 'profile',
   components: {
     UploadMultimedia,
   },
