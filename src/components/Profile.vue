@@ -64,11 +64,12 @@
                 </div>
                 <div class="column is-2-tablet is-4-mobile has-text-centered">
                   <p class="stat-val">3</p>
-                  <p class="stat-key">Pines</p>
+                  <p class="stat-key">Multimedia</p>
                 </div>
               </div>
             </div>
           </div>
+
       <MultimediaByUser/>
   </div>
   </div>
