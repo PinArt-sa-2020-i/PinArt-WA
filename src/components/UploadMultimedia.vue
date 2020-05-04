@@ -1,15 +1,15 @@
 <template>
   <ApolloMutation
     :mutation="require('../graphql/addMultimedia.gql')"
-    :variables= "{image, idUsuario, descripcion, idEtiquetas}"
+    :variables="{image, idUser, descripcion, idEtiquetas}"
     :context="{ headers : {Authorization : token}}"
-    @done = "doneUpload"
+    @done="doneUpload"
   >
     <template v-slot="{ mutate, error }">
-    <form v-on:submit.prevent="">
-      <input  @change="onUpload" type="file"/>
-      <button @click="mutate()" class="btn btn-primary"> Upload</button>
-    </form>
+      <form v-on:submit.prevent="">
+        <input @change="onUpload" type="file"/>
+        <button @click="mutateNow" class="btn btn-primary"> Upload</button>
+      </form>
       <p v-if="error">An error occurred: {{ error }}</p>
     </template>
   </ApolloMutation>
@@ -23,25 +23,45 @@ export default {
   data() {
     return {
       image: null,
-      idUsuario: '1',
       descripcion: 'minino',
-      idEtiquetas: [],
+      idEtiquetas: ['1'],
     };
   },
   methods: {
     onUpload({ target: { files = [] } }) {
       if (files.length) {
+        // eslint-disable-next-line no-console
         console.log(files);
         [this.image] = files;
       }
     },
     doneUpload(data) {
+      // eslint-disable-next-line no-console
       console.log(data);
+    },
+    mutateNow() {
+      this.$apollo.mutate({
+        // eslint-disable-next-line global-require
+        mutation: require('../graphql/addMultimedia.gql'),
+        variables: {
+          image: this.image,
+          idUsuario: this.idUser,
+          descripcion: this.descripcion,
+          idEtiquetas: this.idEtiquetas,
+        },
+        context: {
+          headers: {
+            Authorization: this.token,
+          },
+        },
+      })
+        .then((results) => console.log(results));
     },
   },
   computed: {
     ...mapState({
       token: (state) => state.token,
+      idUser: (state) => state.id,
     }),
   },
 };
