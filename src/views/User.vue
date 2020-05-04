@@ -11,7 +11,16 @@
             </div>
             <div class="column is-4-tablet is-10-mobile name">
               <Profile />
-              <UploadMultimedia />
+              <div>
+                <b-button v-b-modal.modal-no-backdrop>Agregar Multimedia</b-button>
+
+                <b-modal id="modal-no-backdrop"
+                         hide-backdrop content-class="shadow" title="Subir Multimedia">
+                  <p class="my-2">
+                    <UploadMultimedia />
+                  </p>
+                </b-modal>
+              </div>
             </div>
             <div class="column is-2-tablet is-4-mobile has-text-centered">
               <p class="stat-val">30</p>
