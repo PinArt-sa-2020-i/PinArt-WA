@@ -1,4 +1,5 @@
 <template>
+
   <ApolloMutation
     :mutation="require('../graphql/addMultimedia.gql')"
     :variables="{image, idUser, descripcion, idEtiquetas}"
@@ -11,12 +12,31 @@
           <input v-model="descripcion" class="form-control control" type="text" id="descripcion"
                  placeholder="Descripcion de la imagen">
         </div>
+
+          <div class="container">
+            <ApolloQuery
+              :query="require('../graphql/getAllLabels.gql')"
+              :context="{ headers : {Authorization : token}}"
+            >
+              <template v-slot="{ result: { loading, error, data } }">
+                <div
+                  v-if="data"
+                  class="result apollo"
+                  style="display: none"
+                >{{ label = data.getAllLabels }}
+                </div>
+              </template>
+            </ApolloQuery>
+            <MultiSelect v-model="selectedLabels" :options="label" :filter="true"
+                         optionLabel="name" placeholder="Seleccion Etiquetas"/>
+
+
+        </div>
         <input @change="onUpload" type="file"/>
         <button @click="mutateNow" class="btn btn-primary">Upload</button>
       </form>
       <Button label="Success" class="p-button-success" @click="showSuccess" />
       <p v-if="error">An error occurred: {{ error }}</p>
-      <AllTag />
     </template>
   </ApolloMutation>
 
@@ -24,19 +44,17 @@
 
 <script>
 import { mapState } from 'vuex';
-import AllTag from '@/components/AllTag.vue';
 
 export default {
   name: 'Upload',
-  components: {
-    AllTag,
-  },
   data() {
     return {
       image: null,
       descripcion: null,
       idEtiquetas: [''],
       messages: [],
+      selectedLabels: [],
+      label: [],
     };
   },
   methods: {
@@ -59,6 +77,8 @@ export default {
       console.log(data);
     },
     mutateNow() {
+      const labels = this.selectedLabels.map((label) => String(label.id));
+      console.log(labels);
       this.$apollo.mutate({
         // eslint-disable-next-line global-require
         mutation: require('../graphql/addMultimedia.gql'),
@@ -66,7 +86,7 @@ export default {
           image: this.image,
           idUsuario: this.idUser,
           descripcion: this.descripcion,
-          idEtiquetas: this.idEtiquetas,
+          idEtiquetas: labels,
         },
         context: {
           headers: {
@@ -76,6 +96,7 @@ export default {
       })
         .then((results) => console.log(results));
     },
+
   },
   computed: {
     ...mapState({

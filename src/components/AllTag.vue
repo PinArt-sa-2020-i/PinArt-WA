@@ -3,7 +3,6 @@
     <div class="container">
       <ApolloQuery
         :query="require('../graphql/getAllLabels.gql')"
-        :variables="{ id }"
         :context="{ headers : {Authorization : token}}"
       >
         <template v-slot="{ result: { loading, error, data } }">
@@ -11,10 +10,13 @@
             v-if="data"
             class="result apollo"
             style="display: none"
-          >{{ user = data.getAllLabels }}
+          >{{ label = data.getAllLabels }}
           </div>
         </template>
       </ApolloQuery>
+      <MultiSelect v-model="selectedLabels" :options="label" :filter="true"
+                   optionLabel="name" placeholder="Seleccion Etiquetas"/>
+
     </div>
   </div>
 </template>
@@ -26,11 +28,9 @@ import { mapState } from 'vuex';
 export default {
   name: 'All-tag',
   components: {},
-  props: {
-    labels: [],
-  },
   data: () => ({
-    user: [],
+    selectedLabels: [],
+    label: [],
   }),
   computed: {
     ...mapState({
