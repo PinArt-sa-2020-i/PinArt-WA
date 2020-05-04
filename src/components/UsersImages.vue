@@ -4,7 +4,7 @@
       <ApolloQuery
         :query="require('../graphql/getUsersFeed.gql')"
         :variables="{ userId }"
-        :context="{ headers : {Authorization : token}}"
+        :context="{ headers: {Authorization: token}}"
       >
         <template v-slot="{ result: { loading, error, data } }">
           <div

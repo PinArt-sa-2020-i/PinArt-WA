@@ -50,6 +50,12 @@ const routes = [
       image: 'a',
     },
   },
+  {
+    path: '/user',
+    name: 'User',
+    component: () => import(/* webpackChunkName: "dashboard" */'@/views/User.vue'),
+    beforeEnter: requireAuth,
+  },
 ];
 
 const router = new VueRouter({
