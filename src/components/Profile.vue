@@ -68,53 +68,6 @@
                 </div>
               </div>
             </div>
-            <div class="profile-options is-fullwidth">
-              <div class="tabs is-fullwidth is-medium">
-                <ul>
-                  <li class="link">
-                    <a>
-                <span class="icon">
-                  <i class="fa fa-list"></i>
-                </span>
-                      <span>Tableros</span>
-
-                    </a>
-                  </li>
-                  <li class="link is-active">
-                    <a>
-                      <span>Pines</span>
-                    </a>
-                  </li>
-                  <li class="link">
-                    <a>
-                      <span>Seguidores</span>
-                    </a>
-                  </li>
-                  &lt;!&ndash;              <li class="link">
-                  <a>
-                    <span>Etiquetas</span>
-                  </a>
-                </li>&ndash;&gt;
-                </ul>
-              </div>
-            </div>
-            <div class="columns is-mobile">
-              &lt;!&ndash;          Ejemplo tablero&ndash;&gt;
-              <div class="column is-3-tablet is-6-mobile">
-                <div class="card">
-                  <div class="card-image">
-                    <figure class="image is-4by3">
-                      <img src="http://placehold.it/300x225"/>
-                    </figure>
-                  </div>
-                  <div class="card-content">
-                    <span class="tag is-dark subtitle">#1</span>
-                    <p>Personal Notes on the Property </p>
-                  </div>
-                </div>
-              </div>
-              <br/>
-            </div>
           </div>
   </div>
   </div>
