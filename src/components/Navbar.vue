@@ -1,8 +1,18 @@
 <template>
   <b-navbar toggleable="lg" type="light" variant="light" sticky="sticky">
-    <b-navbar-brand href="/"
-      ><img width="40vw" height="40vh" src="../assets/logo.svg"
-    /></b-navbar-brand>
+    <ApolloQuery
+      :query="require('../graphql/getAllLabels.gql')"
+      :context="{ headers: { Authorization: token } }"
+    >
+      <template v-slot="{ result: { loading, error, data } }">
+        <div v-if="data" class="result apollo" style="display : none">
+          {{ (labels = data.getAllLabels) }}
+        </div>
+      </template>
+    </ApolloQuery>
+    <b-navbar-brand @click="$router.push('/')">
+    </b-navbar-brand>
+      <img width="40vw" height="40vh" src="../assets/logo.svg" />
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -14,7 +24,8 @@
 
       <div class="search">
         <b-nav-form>
-          <b-form-input style="width: 70vw;" size="sm"></b-form-input>
+          <autocomplete placeholder="Buscar" style="width: 70vw;" :source="labels" @selected="Save">
+          </autocomplete>
         </b-nav-form>
       </div>
       <!-- Right aligned nav items -->
@@ -33,38 +44,57 @@
 </template>
 
 <script>
+import Autocomplete from 'vuejs-auto-complete';
+import { mapState } from 'vuex';
+
 export default {
   name: 'navbar',
+  components: {
+    Autocomplete,
+  },
   data: () => ({
     logo: '/assets/images/Logo.png',
     sticky: true,
+    labels: [],
   }),
+  computed: {
+    ...mapState({
+      userId: (state) => String(state.id),
+      token: (state) => state.token,
+    }),
+  },
   methods: {
     avatarView() {
       // eslint-disable-next-line no-console
       console.log('routing to avatar view');
+    },
+    Save(select) {
+      console.log('First Select: ', select.value);
+      this.$router.push({
+        name: 'SearchFeed',
+        params: {
+          otherProp: {
+            selected: select.value,
+            previous: 'TagsFeed',
+          },
+        },
+      });
     },
   },
 };
 </script>
 
 <style>
-  .search {
-    width: 70vw;
-    margin-right: 2vw;
-  }
+.search {
+  width: 70vw;
+  margin-right: 2vw;
+}
 
-  .search > input {
-    background-image: url('http://www.clker.com/cliparts/z/1/T/u/9/2/search-icon-hi.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    text-indent: 20px;
-    width: 70vw !important;
-  }
-
-  .form-control {
-    -webkit-border-radius: 50px;
-    -moz-border-radius: 50px;
-    border-radius: 50px;
-  }
+.search > input {
+  background-image: url('http://www.clker.com/cliparts/z/1/T/u/9/2/search-icon-hi.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-indent: 20px;
+  width: 70vw !important;
+}
 </style>

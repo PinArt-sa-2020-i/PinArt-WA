@@ -1,8 +1,7 @@
-query getAllLabels{
-  getAllLabels{
+query getAllLabels {
+  getAllLabels {
     id
     name
     description
-    relatedLabels
   }
 }
