@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import store from '@/store';
 import Home from '../views/Home.vue';
 import Info from '../views/Info.vue';
+import Search from '../views/SearchFeed.vue';
 
 Vue.use(VueRouter);
 
@@ -46,9 +47,20 @@ const routes = [
     name: 'ImageInfo',
     component: Info,
     beforeEnter: requireAuth,
-    props: {
-      image: 'a',
-    },
+    props: (route) => ({
+      image: { firstName: 'John', lastName: 'Snow' },
+      ...route.params,
+    }),
+  },
+  {
+    path: '/search',
+    name: 'SearchFeed',
+    component: Search,
+    beforeEnter: requireAuth,
+    props: (route) => ({
+      image: { firstName: 'John', lastName: 'Snow' },
+      ...route.params,
+    }),
   },
 ];
 
