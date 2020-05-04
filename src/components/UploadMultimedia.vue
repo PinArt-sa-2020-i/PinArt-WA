@@ -1,8 +1,9 @@
 <template>
   <ApolloMutation
     :mutation="require('../graphql/addMultimedia.gql')"
-    :variables= "{image}"
-    @change="onUpload"
+    :variables= "{image, idUsuario, descripcion, idEtiquetas}"
+    :context="{ headers : {Authorization : token}}"
+    @done = "doneUpload"
   >
     <template v-slot="{ mutate, error }">
     <form v-on:submit.prevent="">
@@ -21,15 +22,21 @@ export default {
   name: 'Upload',
   data() {
     return {
-
+      image: null,
+      idUsuario: '1',
+      descripcion: 'minino',
+      idEtiquetas: [],
     };
   },
   methods: {
     onUpload({ target: { files = [] } }) {
       if (files.length) {
         console.log(files);
-
+        [this.image] = files;
       }
+    },
+    doneUpload(data) {
+      console.log(data);
     },
   },
   computed: {

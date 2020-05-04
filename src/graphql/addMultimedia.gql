@@ -1,8 +1,8 @@
-mutation addMultimedia ($image: Upload!){
+mutation addMultimedia ($image: Upload!, $idUsuario:String!, $descripcion:String!, $idEtiquetas:[String]!){
   addMultimedia(multimedia: {
-    idUsuario: "1"
-    descripcion: "Gato"
-    idEtiquetas: ["1"]
+    idUsuario: $idUsuario
+    descripcion: $descripcion
+    idEtiquetas: $idEtiquetas
     file: $image
   }){
     id

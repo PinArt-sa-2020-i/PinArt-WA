@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <Profile />
+    <UploadMultimedia />
 
      </div>
 </template>
@@ -10,12 +11,14 @@
 import Profile from '@/components/Profile.vue';
 import { mapState, mapActions } from 'vuex';
 import * as constants from '@/store/constants';
+import UploadMultimedia from '@/components/UploadMultimedia.vue';
 
 
 export default {
   name: 'UsersFeed',
   components: {
     Profile,
+    UploadMultimedia,
   },
   data() {
     return {

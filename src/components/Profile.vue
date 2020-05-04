@@ -132,7 +132,7 @@ export default {
     labels: [],
   },
   data: () => ({
-    user: null,
+    user: [],
   }),
   computed: {
     ...mapState({
