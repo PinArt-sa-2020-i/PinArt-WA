@@ -14,7 +14,9 @@
         <input @change="onUpload" type="file"/>
         <button @click="mutateNow" class="btn btn-primary">Upload</button>
       </form>
+      <Button label="Success" class="p-button-success" @click="showSuccess" />
       <p v-if="error">An error occurred: {{ error }}</p>
+      <TagUser />
     </template>
   </ApolloMutation>
 
@@ -22,17 +24,29 @@
 
 <script>
 import { mapState } from 'vuex';
+import TagUser from '@/components/TagUser.vue';
 
 export default {
   name: 'Upload',
+  components: {
+    TagUser,
+  },
   data() {
     return {
       image: null,
       descripcion: null,
       idEtiquetas: [''],
+      messages: [],
     };
   },
   methods: {
+    showSuccess() {
+      this.$toast.add({
+        severity: 'success',
+        summary: 'Success Message',
+        detail: 'Order submitted',
+      });
+    },
     onUpload({ target: { files = [] } }) {
       if (files.length) {
         // eslint-disable-next-line no-console

@@ -12,6 +12,7 @@ import ToastService from 'primevue/toastservice';
 import Listbox from 'primevue/listbox';
 import FileUpload from 'primevue/fileupload';
 import Calendar from 'primevue/calendar';
+import Button from 'primevue/button';
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -21,11 +22,12 @@ import { createProvider } from './vue-apollo';
 Vue.config.productionTip = false;
 
 Vue.use(bootstrapvue);
-Vue.component('Toast', Toast);
 Vue.use(ToastService);
-Vue.use('Listbox', Listbox);
-Vue.use('Calendar', Calendar);
-Vue.use('FileUpload', FileUpload);
+Vue.component('Toast', Toast);
+Vue.component('Button', Button);
+Vue.component('Listbox', Listbox);
+Vue.component('Calendar', Calendar);
+Vue.component('FileUpload', FileUpload);
 
 
 new Vue({
