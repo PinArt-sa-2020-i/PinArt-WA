@@ -15,50 +15,54 @@
           </div>
         </template>
       </ApolloQuery>
-      <div class="container profile">
-        <div class="section profile-heading">
-          <div class="columns is-mobile is-multiline">
-            <div class="column is-2">
+      <div class="home">
+        <div class="columns">
+          <div class="container profile">
+            <div class="modal" id="edit-preferences-modal">
+              <div class="modal-background"></div>
+              <div class="modal-card">
+                <header class="modal-card-head">
+                  <p class="modal-card-title">Editar Perfil</p>
+                  <Button class="delete"></Button>
+                </header>
+              </div>
+            </div>
+            <div class="section profile-heading">
+              <div class="columns is-mobile is-multiline">
+                <div class="column is-2">
                 <span class="header-icon user-profile-image">
                   <img src="https://i.imgur.com/XTNBAGt.jpg">
                 </span>
-            </div>
-            <div class="column is-4-tablet is-10-mobile name">
-              <div class="column is-4-tablet is-10-mobile name">
-                <p>
-                  <span class="title is-bold">{{user.firstName +' ' + user.lastName}}</span>
-                  <br/>
-                  <a class="button is-primary is-outlined" href="#" id="edit-preferences"
-                     style="margin: 5px 0">
-                    Editar Perfil
-                  </a>
-                  <br/>
-                </p>
-                <p class="tagline">
-                  La descripcion iria aca
-                </p>
-              </div>
-              <div>
-                <b-button v-b-modal.modal-no-backdrop>Agregar Multimedia</b-button>
-                <b-modal id="modal-no-backdrop"
-                         hide-backdrop content-class="shadow" title="Subir Multimedia">
-                  <p class="my-2">
-                    <UploadMultimedia />
+                </div>
+                <div class="column is-4-tablet is-10-mobile name">
+                  <p>
+                    <span class="title is-bold">{{user.firstName +' ' + user.lastName}}</span>
+                    <br/>
+                    <a class="button is-primary is-outlined" href="#" id="edit-preferences"
+                       style="margin: 5px 0">
+                      Editar Perfil
+                    </a>
+                    <br/>
                   </p>
-                </b-modal>
+                  <p class="tagline">
+                    La descripcion iria aca
+                  </p>
+                  <br/>
+                  <UploadMultimedia />
+                </div>
+                <div class="column is-2-tablet is-4-mobile has-text-centered">
+                  <p class="stat-val">30</p>
+                  <p class="stat-key">Seguidores</p>
+                </div>
+                <div class="column is-2-tablet is-4-mobile has-text-centered">
+                  <p class="stat-val">0</p>
+                  <p class="stat-key">Tableros</p>
+                </div>
+                <div class="column is-2-tablet is-4-mobile has-text-centered">
+                  <p class="stat-val">3</p>
+                  <p class="stat-key">Pines</p>
+                </div>
               </div>
-            </div>
-            <div class="column is-2-tablet is-4-mobile has-text-centered">
-              <p class="stat-val">30</p>
-              <p class="stat-key">Seguidores</p>
-            </div>
-            <div class="column is-2-tablet is-4-mobile has-text-centered">
-              <p class="stat-val">0</p>
-              <p class="stat-key">Tableros</p>
-            </div>
-            <div class="column is-2-tablet is-4-mobile has-text-centered">
-              <p class="stat-val">3</p>
-              <p class="stat-key">Pines</p>
             </div>
             <div class="profile-options is-fullwidth">
               <div class="tabs is-fullwidth is-medium">
