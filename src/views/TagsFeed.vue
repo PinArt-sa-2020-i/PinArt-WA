@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <TagImages />
+    <TagImages/>
   </div>
 </template>
 
@@ -23,6 +23,8 @@ export default {
   computed: {
     ...mapState({
       isImage: (state) => state.image,
+      userId: (state) => state.id,
+      token: (state) => state.token,
     }),
   },
   methods: {
@@ -30,11 +32,32 @@ export default {
       image: constants.GET_IMAGE,
     }),
     checkUserLabels() {
-
+      this.$apollo.query({
+        // eslint-disable-next-line global-require
+        query: require('../graphql/userLabels.gql'),
+        variables: {
+          userId: this.userId,
+        },
+        context: {
+          headers: {
+            Authorization: this.token,
+          },
+        },
+      })
+        // eslint-disable-next-line no-return-assign
+        .then((data) => {
+          // eslint-disable-next-line no-console
+          console.log(data);
+          if (!data.data.userLabels.relatedLabels) {
+            this.$router.push('UserTags');
+          } else {
+            this.labels = data.data.userLabels.relatedLabels;
+          }
+        });
     },
   },
   created() {
-
+    this.checkUserLabels();
   },
 };
 </script>

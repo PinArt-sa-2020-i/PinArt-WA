@@ -50,6 +50,12 @@ const routes = [
       image: 'a',
     },
   },
+  {
+    path: '/userTags',
+    name: 'UserTags',
+    component: () => import(/* webpackChunkName: "dashboard" */ '../views/UserTags.vue'),
+    beforeEnter: requireAuth,
+  },
 ];
 
 const router = new VueRouter({
