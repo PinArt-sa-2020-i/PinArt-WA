@@ -34,12 +34,6 @@
         </div>
         <input @change="onUpload" type="file"/>
         <button @click="mutateNow" class="btn btn-primary">Upload</button>
-        <h3>Advanced</h3>
-        <FileUpload name="demo[]"  @upload="onUpload"  accept="image/*" :maxFileSize="1000000">
-          <template #empty>
-            <p>Drag and drop files to here to upload.</p>
-          </template>
-        </FileUpload>
         <Toast></Toast>
       </form>
       <Button label="Success" class="p-button-success" @click="showSuccess" />
