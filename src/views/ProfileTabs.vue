@@ -26,14 +26,14 @@ export default {
     return {
       items: [
         {
-          label: 'Home',
-          icon: 'pi pi-fw pi-camera',
-          to: '/homedemo',
+          label: 'Multimedia',
+          icon: 'pi pi-fw pi-image',
+          to: '/multimedia',
         },
         {
-          label: 'Multimedia',
-          icon: 'pi pi-fw pi-home',
-          to: '/multimedia',
+          label: 'Siguiendo',
+          icon: 'pi pi-fw pi-camera',
+          to: '/homedemo',
         },
       ],
     };

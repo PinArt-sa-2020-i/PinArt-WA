@@ -82,15 +82,15 @@ const routes = [
     children: [
       {
         path: '',
-        component: () => import('@/views/profile/HomeDemo.vue'),
-      },
-      {
-        path: '/homedemo',
-        component: () => import(/* webpackChunkName: "dashboard" */'@/views/profile/HomeDemo.vue'),
+        component: () => import('@/views/profile/Multimedia.vue'),
       },
       {
         path: '/multimedia',
         component: () => import(/* webpackChunkName: "dashboard" */'@/views/profile/Multimedia.vue'),
+      },
+      {
+        path: '/homedemo',
+        component: () => import(/* webpackChunkName: "dashboard" */'@/views/profile/HomeDemo.vue'),
       },
     ],
   },

@@ -36,8 +36,7 @@
         <button @click="mutateNow" class="btn btn-primary">Upload</button>
         <Toast></Toast>
       </form>
-      <Button label="Success" class="p-button-success" @click="showSuccess" />
-      <p v-if="error">An error occurred: {{ error }}</p>
+      <p v-if="error">An error occurred: {{ error }}  </p>
     </template>
   </ApolloMutation>
 
@@ -64,7 +63,7 @@ export default {
       this.$toast.add({
         severity: 'success',
         summary: 'Success Message',
-        detail: 'Order submitted',
+        detail: 'Multimedia Cargada',
         life: 3000,
       });
     },
@@ -82,6 +81,12 @@ export default {
     mutateNow() {
       const labels = this.selectedLabels.map((label) => String(label.id));
       console.log(labels);
+      this.$toast.add({
+        severity: 'success',
+        summary: 'Multimedia Cargada',
+        detail: 'Multimedia Cargada',
+        life: 3000,
+      });
       this.$apollo.mutate({
         // eslint-disable-next-line global-require
         mutation: require('../graphql/addMultimedia.gql'),

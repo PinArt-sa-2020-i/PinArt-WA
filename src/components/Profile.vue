@@ -55,8 +55,8 @@
                   </b-modal>
                 </div>
                 <div class="column is-2-tablet is-4-mobile has-text-centered">
-                  <p class="stat-val">30</p>
-                  <p class="stat-key">Seguidores</p>
+                  <p class="stat-val">3</p>
+                  <p class="stat-key">Siguiendo</p>
                 </div>
                 <div class="column is-2-tablet is-4-mobile has-text-centered">
                   <p class="stat-val">0</p>

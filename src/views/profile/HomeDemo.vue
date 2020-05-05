@@ -1,12 +1,16 @@
 <template>
     <div class="tabmenudemo-content">
-        <i class="pi pi-fw pi-home" />
-        <h1>Home Component Content</h1>
+        <AllFollowingByUser/>
     </div>
 </template>
 
 <script>
+import AllFollowingByUser from '@/components/AllFollowingByUser.vue';
+
 export default {
+  components: {
+    AllFollowingByUser,
+  },
 
 };
 </script>
