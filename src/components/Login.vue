@@ -87,6 +87,7 @@ export default {
     ...mapActions({
       login: constants.SESSION_LOGIN,
       setForm() {
+        this.clearForm();
         this.loginForm = !this.loginForm;
       },
       clearForm() {
@@ -102,14 +103,29 @@ export default {
         this.login(data.data.authenticateUser);
       }
       this.clearForm();
+      this.$router.push('TagFeed');
     },
     onRegister(data) {
       if (data.data.registerUser.id) {
+        this.loginBackground();
+        this.setForm();
+        this.clearForm();
+      } else {
         // eslint-disable-next-line no-alert
-        alert('Te has registrado exitosamente, inicia sesión');
+        alert('Ha ocurrido un error en el registro');
       }
-      this.setForm();
-      this.clearForm();
+    },
+    loginBackground() {
+      this.$apollo.mutate({
+        // eslint-disable-next-line global-require
+        mutation: require('../graphql/authenticateUser.gql'),
+        variables: {
+          username: this.username,
+          password: this.password,
+          dispositivo: this.dispositivo,
+        },
+      })
+        .then((data) => this.onLogin(data));
     },
   },
 };

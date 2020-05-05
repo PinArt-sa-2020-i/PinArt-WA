@@ -33,13 +33,13 @@ const routes = [
   {
     path: '/tagfeed',
     name: 'TagFeed',
-    component: () => import('../views/TagsFeed.vue'),
+    component: () => import(/* webpackChunkName: "dashboard" */ '../views/TagsFeed.vue'),
     beforeEnter: requireAuth,
   },
   {
     path: '/usersfeed',
     name: 'UsersFeed',
-    component: () => import('../views/UsersFeed.vue'),
+    component: () => import(/* webpackChunkName: "dashboard" */ '../views/UsersFeed.vue'),
     beforeEnter: requireAuth,
   },
   {
@@ -51,6 +51,12 @@ const routes = [
       image: { firstName: 'John', lastName: 'Snow' },
       ...route.params,
     }),
+  },
+  {
+    path: '/userTags',
+    name: 'UserTags',
+    component: () => import(/* webpackChunkName: "dashboard" */ '../views/UserTags.vue'),
+    beforeEnter: requireAuth,
   },
   {
     path: '/search',
