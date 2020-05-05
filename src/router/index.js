@@ -68,6 +68,27 @@ const routes = [
     component: () => import(/* webpackChunkName: "dashboard" */'@/views/User.vue'),
     beforeEnter: requireAuth,
   },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import(/* webpackChunkName: "dashboard" */'@/views/ProfileTabs.vue'),
+    beforeEnter: requireAuth,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/profile/HomeDemo.vue'),
+      },
+      {
+        path: '/homedemo',
+        component: () => import(/* webpackChunkName: "dashboard" */'@/views/profile/HomeDemo.vue'),
+      },
+      {
+        path: '/multimedia',
+        component: () => import(/* webpackChunkName: "dashboard" */'@/views/profile/Multimedia.vue'),
+      },
+    ],
+  },
+
 ];
 
 const router = new VueRouter({

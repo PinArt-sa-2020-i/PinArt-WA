@@ -14,6 +14,7 @@ import FileUpload from 'primevue/fileupload';
 import Calendar from 'primevue/calendar';
 import Button from 'primevue/button';
 import MultiSelect from 'primevue/multiselect';
+import TabMenu from 'primevue/tabmenu';
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -30,6 +31,7 @@ Vue.component('MultiSelect', MultiSelect);
 Vue.component('Listbox', Listbox);
 Vue.component('Calendar', Calendar);
 Vue.component('FileUpload', FileUpload);
+Vue.component('TabMenu', TabMenu);
 
 
 new Vue({

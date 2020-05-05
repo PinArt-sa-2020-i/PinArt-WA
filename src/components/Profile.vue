@@ -70,7 +70,7 @@
             </div>
           </div>
 
-      <MultimediaByUser/>
+<!--      <MultimediaByUser/>-->
   </div>
   </div>
 </template>
@@ -78,13 +78,13 @@
 <script>
 import { mapState } from 'vuex';
 import UploadMultimedia from '@/components/UploadMultimedia.vue';
-import MultimediaByUser from './MultimediaByUser.vue';
+// import MultimediaByUser from './MultimediaByUser.vue';
 
 export default {
   name: 'profile',
   components: {
     UploadMultimedia,
-    MultimediaByUser,
+    // MultimediaByUser,
   },
   props: {
     labels: [],
