@@ -69,8 +69,6 @@
               </div>
             </div>
           </div>
-
-<!--      <MultimediaByUser/>-->
   </div>
   </div>
 </template>
@@ -80,7 +78,6 @@ import { mapState } from 'vuex';
 import UploadMultimedia from '@/components/UploadMultimedia.vue';
 import CountFollowing from '@/components/CountFollowing.vue';
 import CountMultimedia from '@/components/CountMultimedia.vue';
-// import MultimediaByUser from './MultimediaByUser.vue';
 
 export default {
   name: 'profile',
@@ -88,7 +85,6 @@ export default {
     UploadMultimedia,
     CountFollowing,
     CountMultimedia,
-    // MultimediaByUser,
   },
   props: {
     labels: [],
