@@ -46,8 +46,6 @@ export default {
       })
         // eslint-disable-next-line no-return-assign
         .then((data) => {
-          // eslint-disable-next-line no-console
-          console.log(data);
           if (!data.data.userLabels.relatedLabels) {
             this.$router.push('UserTags');
           } else {
