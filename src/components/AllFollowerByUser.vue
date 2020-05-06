@@ -3,7 +3,6 @@
     <div class="container">
       <ApolloQuery
         :query="require('../graphql/allUserFollow.gql')"
-        :variables="{ userId }"
         :context="{ headers : {Authorization : token}}"
       >
         <template v-slot="{ result: { loading, error, data } }">
@@ -11,12 +10,13 @@
             v-if="data"
             class="result apollo"
             style="display: none"
-          >{{ followers = data.allUserFollow.filter(item => item.userFollowing.id  == userId  ) }}
+          >{{ followers = data.allUserFollow}}
            </div>
         </template>
       </ApolloQuery>
       <ul>
-        <div v-for="item in followers" :key="item.id">
+
+        <div v-for="item in followersFiltered" :key="item.id">
           <FollowingUser :id="item.userFollower.id"/>
         </div>
       </ul>
@@ -44,6 +44,9 @@ export default {
       userId: (state) => state.id,
       token: (state) => state.token,
     }),
+    followersFiltered() {
+      return this.followers.filter((item) => item.userFollowing.id === this.userId);
+    },
   },
 };
 </script>
