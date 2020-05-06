@@ -92,6 +92,10 @@ const routes = [
         path: '/siguiendo',
         component: () => import(/* webpackChunkName: "dashboard" */'@/views/profile/Siguiendo.vue'),
       },
+      {
+        path: '/seguidores',
+        component: () => import(/* webpackChunkName: "dashboard" */'@/views/profile/Seguidores.vue'),
+      },
     ],
   },
 

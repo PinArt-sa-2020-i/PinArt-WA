@@ -1,9 +1,7 @@
 <template>
-  <div id="profile">
-    <div class="container">
+  <div id="follower">
       <ApolloQuery
-        :query="require('../graphql/usersFollowingByFollower.gql')"
-        :variables="{ userId }"
+        :query="require('../graphql/allUserFollow.gql')"
         :context="{ headers : {Authorization : token}}"
       >
         <template v-slot="{ result: { loading, error, data } }">
@@ -11,39 +9,39 @@
             v-if="data"
             class="result apollo"
             style="display: none"
-          >{{ following = data.usersFollowingByFollower }}
+          >{{ followers = data.allUserFollow}}
           </div>
         </template>
       </ApolloQuery>
-      <ul>
-        <div v-for="user in following" :key="user.id">
-             <FollowingUser :id="user.id"/>
-        </div>
-      </ul>
-    </div>
+
+    <p class="stat-val">{{followersFiltered.length}}</p>
+      <p class="stat-key">Seguidores</p>
+
+
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import FollowingUser from './UserData.vue';
+
 
 export default {
-  name: 'user-following',
-  components: {
-    FollowingUser,
-  },
+  name: 'follower',
+  components: { },
   props: {
     labels: [],
   },
   data: () => ({
-    following: [],
+    followers: [],
   }),
   computed: {
     ...mapState({
       userId: (state) => state.id,
       token: (state) => state.token,
     }),
+    followersFiltered() {
+      return this.followers.filter((item) => item.userFollowing.id === this.userId);
+    },
   },
 };
 </script>
