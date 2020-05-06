@@ -13,8 +13,7 @@
                     previous: 'UsersFeed',
                   },
                 },
-              })
-            "
+              })"
           >
             <img class="feed" :src="image.url" :alt="image.descripcion" />
           </a>
