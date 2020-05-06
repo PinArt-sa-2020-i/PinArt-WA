@@ -16,7 +16,19 @@
       </ApolloQuery>
       <stack :column-min-width="200" :gutter-width="5" :gutter-height="5" monitor-images-loaded>
         <stack-item v-for="(image, i) in images" :key="i" style="transition: transform 300ms">
-          <a @click="$router.push({ name: 'ImageInfo'})">
+          <a
+            @click="
+              $router.push({
+                name: 'ImageInfo',
+                params: {
+                  otherProp: {
+                    image: image,
+                    previous: 'UsersFeed',
+                  },
+                },
+              })
+            "
+          >
             <img class="feed" :src="image.url" :alt="image.descripcion" />
           </a>
         </stack-item>
@@ -28,6 +40,7 @@
 <script>
 import { Stack, StackItem } from 'vue-stack-grid';
 import { mapState } from 'vuex';
+import USERS_FEED from '../graphql/getUsersFeed.gql';
 
 export default {
   name: 'feed-image',
@@ -46,6 +59,17 @@ export default {
       userId: (state) => String(state.id),
       token: (state) => state.token,
     }),
+  },
+  async created() {
+    const userId = String(this.userId);
+    const { token } = this;
+    const result = await this.$apollo.query({
+      fetchPolicy: 'no-cache',
+      query: USERS_FEED,
+      variables: { userId },
+      context: { headers: { Authorization: token } },
+    });
+    this.images = result.data.getUsersFeed;
   },
 };
 </script>

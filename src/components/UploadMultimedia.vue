@@ -55,6 +55,7 @@ export default {
           },
         },
       })
+        // eslint-disable-next-line no-console
         .then((results) => console.log(results));
     },
   },
