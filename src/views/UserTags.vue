@@ -19,7 +19,10 @@
       </div>
     </div>
     <br>
-    <button @click="addUserLabels"> Agregar etiquetas</button>
+    <div class="col-md-4 text-center">
+      <button type="button" class="btn btn-primary" @click="addUserLabels"> Agregar etiquetas
+      </button>
+    </div>
   </div>
 </template>
 
@@ -62,13 +65,14 @@ export default {
         .catch((error) => console.error(error));
     },
     addUserLabels() {
+      const labels = this.dbLabels.filter((lab) => lab.selected)
+        .map((lab) => lab.id);
       this.$apollo.mutate({
         // eslint-disable-next-line global-require
         mutation: require('../graphql/addLabelUser.gql'),
         variables: {
           idUser: this.id,
-          idLabels: this.dbLabels.filter((lab) => lab.selected)
-            .map((lab) => lab.id),
+          idLabel: labels,
         },
         context: {
           headers: {

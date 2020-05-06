@@ -1,4 +1,4 @@
-mutation addLabelUser($idUser:Int!, $idLabel:Int!){
+mutation addLabelUser($idUser:Int!, $idLabel:[Int!]){
   addLabelUser(
   idUser: $idUser,
    idLabel: $idLabel

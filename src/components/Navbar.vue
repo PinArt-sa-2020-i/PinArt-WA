@@ -69,6 +69,7 @@ export default {
       console.log('routing to avatar view');
     },
     Save(select) {
+      // eslint-disable-next-line no-console
       console.log('First Select: ', select.value);
       this.$router.push({
         name: 'SearchFeed',
