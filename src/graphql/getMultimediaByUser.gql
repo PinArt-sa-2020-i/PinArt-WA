@@ -1,4 +1,4 @@
-query userById($id: String!){
+query getMultimediaByUser($id: String!){
   getMultimediaByUser(id: $id){
     id
     descripcion

@@ -33,7 +33,7 @@ export default {
         {
           label: 'Siguiendo',
           icon: 'pi pi-fw pi-camera',
-          to: '/homedemo',
+          to: '/siguiendo',
         },
       ],
     };
