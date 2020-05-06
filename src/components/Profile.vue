@@ -60,8 +60,7 @@
                   <CountFollowing />
                 </div>
                 <div class="column is-2-tablet is-4-mobile has-text-centered">
-                  <p class="stat-val">0</p>
-                  <p class="stat-key">Seguidores</p>
+                  <CountFollower />
                 </div>
                 <div class="column is-2-tablet is-4-mobile has-text-centered">
                   <CountMultimedia />
@@ -78,6 +77,7 @@ import { mapState } from 'vuex';
 import UploadMultimedia from '@/components/UploadMultimedia.vue';
 import CountFollowing from '@/components/CountFollowing.vue';
 import CountMultimedia from '@/components/CountMultimedia.vue';
+import CountFollower from '@/components/CountFollower.vue';
 
 export default {
   name: 'profile',
@@ -85,6 +85,7 @@ export default {
     UploadMultimedia,
     CountFollowing,
     CountMultimedia,
+    CountFollower,
   },
   props: {
     labels: [],

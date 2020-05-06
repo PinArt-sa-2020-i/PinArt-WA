@@ -26,7 +26,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import FollowingUser from './FollowingUser.vue';
+import FollowingUser from './UserData.vue';
 
 export default {
   name: 'follower',
