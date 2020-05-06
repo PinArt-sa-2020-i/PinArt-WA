@@ -35,6 +35,11 @@ export default {
           icon: 'pi pi-fw pi-camera',
           to: '/siguiendo',
         },
+        {
+          label: 'Seguidores',
+          icon: 'pi pi-fw pi-camera',
+          to: '/seguidores',
+        },
       ],
     };
   },
