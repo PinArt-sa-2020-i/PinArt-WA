@@ -15,11 +15,9 @@
           </div>
         </template>
       </ApolloQuery>
-
       <div>
           <span class="title is-bold">{{user.firstName +' ' + user.lastName}}</span>
       </div>
-         <!--      <MultimediaByUser/>-->
     </div>
   </div>
 </template>

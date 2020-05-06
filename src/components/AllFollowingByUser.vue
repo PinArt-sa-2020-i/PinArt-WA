@@ -13,17 +13,13 @@
             style="display: none"
           >{{ following = data.usersFollowingByFollower }}
           </div>
-
         </template>
       </ApolloQuery>
-
       <ul>
         <div v-for="user in following" :key="user.id">
              <FollowingUser :id="user.id"/>
         </div>
       </ul>
-
-      <div>User following: {{following.length}}</div>
     </div>
   </div>
 </template>
