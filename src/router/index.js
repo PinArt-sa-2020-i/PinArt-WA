@@ -90,7 +90,7 @@ const routes = [
       },
       {
         path: '/homedemo',
-        component: () => import(/* webpackChunkName: "dashboard" */'@/views/profile/HomeDemo.vue'),
+        component: () => import(/* webpackChunkName: "dashboard" */'@/views/profile/Siguiendo.vue'),
       },
     ],
   },

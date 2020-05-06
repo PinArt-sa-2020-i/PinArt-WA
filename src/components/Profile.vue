@@ -1,4 +1,5 @@
 <template>
+
   <div id="profile">
     <div class="container">
       <ApolloQuery
@@ -15,6 +16,7 @@
           </div>
         </template>
       </ApolloQuery>
+
          <div class="container profile">
             <div class="modal" id="edit-preferences-modal">
               <div class="modal-background"></div>
@@ -55,16 +57,14 @@
                   </b-modal>
                 </div>
                 <div class="column is-2-tablet is-4-mobile has-text-centered">
-                  <p class="stat-val">3</p>
-                  <p class="stat-key">Siguiendo</p>
+                  <CountFollowing />
                 </div>
                 <div class="column is-2-tablet is-4-mobile has-text-centered">
                   <p class="stat-val">0</p>
-                  <p class="stat-key">Tableros</p>
+                  <p class="stat-key">Seguidores</p>
                 </div>
                 <div class="column is-2-tablet is-4-mobile has-text-centered">
-                  <p class="stat-val">3</p>
-                  <p class="stat-key">Multimedia</p>
+                  <CountMultimedia />
                 </div>
               </div>
             </div>
@@ -78,12 +78,16 @@
 <script>
 import { mapState } from 'vuex';
 import UploadMultimedia from '@/components/UploadMultimedia.vue';
+import CountFollowing from '@/components/CountFollowing.vue';
+import CountMultimedia from '@/components/CountMultimedia.vue';
 // import MultimediaByUser from './MultimediaByUser.vue';
 
 export default {
   name: 'profile',
   components: {
     UploadMultimedia,
+    CountFollowing,
+    CountMultimedia,
     // MultimediaByUser,
   },
   props: {

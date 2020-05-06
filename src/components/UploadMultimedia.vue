@@ -81,12 +81,7 @@ export default {
     mutateNow() {
       const labels = this.selectedLabels.map((label) => String(label.id));
       console.log(labels);
-      this.$toast.add({
-        severity: 'success',
-        summary: 'Multimedia Cargada',
-        detail: 'Multimedia Cargada',
-        life: 3000,
-      });
+
       this.$apollo.mutate({
         // eslint-disable-next-line global-require
         mutation: require('../graphql/addMultimedia.gql'),
@@ -102,7 +97,15 @@ export default {
           },
         },
       })
-        .then((results) => console.log(results));
+        .then((results) => {
+          console.log(results);
+          this.$toast.add({
+            severity: 'success',
+            summary: 'Multimedia Cargada',
+            detail: 'Multimedia Cargada',
+            life: 3000,
+          });
+        });
     },
 
   },

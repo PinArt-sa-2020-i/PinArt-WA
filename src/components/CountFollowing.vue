@@ -1,6 +1,6 @@
 <template>
-  <div id="profile">
-    <div class="container">
+  <div id="countFollowing">
+
       <ApolloQuery
         :query="require('../graphql/usersFollowingByFollower.gql')"
         :variables="{ userId }"
@@ -16,27 +16,16 @@
 
         </template>
       </ApolloQuery>
-
-      <ul>
-        <div v-for="user in following" :key="user.id">
-             <FollowingUser :id="user.id"/>
-        </div>
-      </ul>
-
-      <div>User following: {{following.length}}</div>
+      <p class="stat-val">{{following.length}}</p>
+      <p class="stat-key">Siguiendo</p>
     </div>
-  </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import FollowingUser from './FollowingUser.vue';
 
 export default {
   name: 'user-following',
-  components: {
-    FollowingUser,
-  },
   props: {
     labels: [],
   },
