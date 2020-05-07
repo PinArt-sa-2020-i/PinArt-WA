@@ -35,6 +35,7 @@ export default {
       this.$apollo.query({
         // eslint-disable-next-line global-require
         query: require('../graphql/userLabels.gql'),
+        fetchPolicy: 'no-cache',
         variables: {
           userId: this.userId,
         },
