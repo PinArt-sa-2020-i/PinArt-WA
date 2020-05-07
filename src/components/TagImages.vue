@@ -27,7 +27,7 @@
 <script>
 import { Stack, StackItem } from 'vue-stack-grid';
 import { mapState } from 'vuex';
-import TAGS_FEED from '../graphql/getUsersFeed.gql';
+import TAGS_FEED from '../graphql/getTagsFeed.gql';
 
 export default {
   name: 'feed-image',
@@ -56,7 +56,7 @@ export default {
       variables: { userId },
       context: { headers: { Authorization: token } },
     });
-    this.images = result.data.getUsersFeed;
+    this.images = result.data.getTagsFeed;
   },
 };
 </script>
