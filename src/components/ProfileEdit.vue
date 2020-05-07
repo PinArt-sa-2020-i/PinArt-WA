@@ -23,7 +23,7 @@
                  placeholder="Descripcion">
         </div>
 
-        <button  @click="onLoadFoto"  class="btn btn-primary">Cargar foto</button>
+        <UploadPhotoProfile @saved="onPhotoSave" />
         <button  @click="mutateNow"  class="btn btn-primary">Save</button>
         <button  @click="onCancel"  class="btn btn-primary">Cancel</button>
 
@@ -34,9 +34,14 @@
 
 <script>
 import { mapState } from 'vuex';
+import UploadPhotoProfile from '@/components/UploadPhotoProfile.vue';
+
 
 export default {
   name: 'ProfileEdit',
+  components: {
+    UploadPhotoProfile,
+  },
   props: {
     profile: {
       type: Object,
@@ -54,6 +59,10 @@ export default {
     },
     onCancel() {
       this.$emit('cancelled', 'someValue');
+    },
+    onPhotoSave(value) {
+      console.log(value);
+      this.profile.foto = value;
     },
     mutateNow() {
       this.$apollo.mutate({
