@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <Profile />
-    <UploadMultimedia />
-
-     </div>
+    <div class="columns">
+      <Profile />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -11,14 +11,12 @@
 import Profile from '@/components/Profile.vue';
 import { mapState, mapActions } from 'vuex';
 import * as constants from '@/store/constants';
-import UploadMultimedia from '@/components/UploadMultimedia.vue';
 
 
 export default {
-  name: 'UsersFeed',
+  name: 'User',
   components: {
     Profile,
-    UploadMultimedia,
   },
   data() {
     return {

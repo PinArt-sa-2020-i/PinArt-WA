@@ -53,6 +53,12 @@ const routes = [
     }),
   },
   {
+    path: '/userTags',
+    name: 'UserTags',
+    component: () => import(/* webpackChunkName: "dashboard" */ '../views/UserTags.vue'),
+    beforeEnter: requireAuth,
+  },
+  {
     path: '/search',
     name: 'SearchFeed',
     component: Search,
@@ -69,11 +75,30 @@ const routes = [
     beforeEnter: requireAuth,
   },
   {
-    path: '/userTags',
-    name: 'UserTags',
-    component: () => import(/* webpackChunkName: "dashboard" */ '../views/UserTags.vue'),
+    path: '/profile',
+    name: 'Profile',
+    component: () => import(/* webpackChunkName: "dashboard" */'@/views/ProfileTabs.vue'),
     beforeEnter: requireAuth,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/profile/Multimedia.vue'),
+      },
+      {
+        path: '/multimedia',
+        component: () => import(/* webpackChunkName: "dashboard" */'@/views/profile/Multimedia.vue'),
+      },
+      {
+        path: '/siguiendo',
+        component: () => import(/* webpackChunkName: "dashboard" */'@/views/profile/Siguiendo.vue'),
+      },
+      {
+        path: '/seguidores',
+        component: () => import(/* webpackChunkName: "dashboard" */'@/views/profile/Seguidores.vue'),
+      },
+    ],
   },
+
 ];
 
 const router = new VueRouter({
