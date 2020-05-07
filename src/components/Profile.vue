@@ -18,6 +18,7 @@
       </ApolloQuery>
 
          <div class="container profile">
+           <Toast></Toast>
             <div class="modal" id="edit-preferences-modal">
               <div class="modal-background"></div>
               <div class="modal-card">
@@ -31,22 +32,36 @@
               <div class="columns is-mobile is-multiline">
                 <div class="column is-2">
                 <span class="header-icon user-profile-image">
-                  <img src="https://i.imgur.com/XTNBAGt.jpg">
+                  <img v-bind:src="user.profiles[0].foto"  alt="Foto de perfil">
                 </span>
                 </div>
                 <div class="column is-4-tablet is-10-mobile name">
                   <p>
                     <span class="title is-bold">{{user.firstName +' ' + user.lastName}}</span>
                     <br/>
-                    <a class="button is-primary is-outlined" href="#" id="edit-preferences"
+                    <a class="button is-primary is-outlined" @click="edit" id="edit-preferences"
                        style="margin: 5px 0">
                       Editar Perfil
                     </a>
                     <br/>
                   </p>
-                  <p class="tagline">
-                    La descripcion iria aca
+                  <p>
+                    <ProfileEdit @cancelled="onCancel" @saved="onSave"
+                                 v-if="editing" :profile="user.profiles[0]" />
                   </p>
+
+                  <div v-if="!editing">
+                    <p class="tagline">
+                      {{user.profiles[0].fechaNacimiento}}
+                    </p>
+                    <p class="tagline">
+                      {{user.profiles[0].genero}}
+                    </p>
+                    <p class="tagline">
+                      {{user.profiles[0].descripcion}}
+                    </p>
+                  </div>
+
                   <br/>
                   <b-button v-b-modal.modal-no-backdrop>Agregar Multimedia</b-button>
                   <b-modal id="modal-no-backdrop"
@@ -78,10 +93,12 @@ import UploadMultimedia from '@/components/UploadMultimedia.vue';
 import CountFollowing from '@/components/CountFollowing.vue';
 import CountMultimedia from '@/components/CountMultimedia.vue';
 import CountFollower from '@/components/CountFollower.vue';
+import ProfileEdit from '@/components/ProfileEdit.vue';
 
 export default {
   name: 'profile',
   components: {
+    ProfileEdit,
     UploadMultimedia,
     CountFollowing,
     CountMultimedia,
@@ -90,9 +107,32 @@ export default {
   props: {
     labels: [],
   },
-  data: () => ({
-    user: [],
-  }),
+  data: () => (
+    {
+      editing: false,
+      user: {
+        profiles: [
+          {},
+        ],
+      },
+    }),
+  methods: {
+    edit() {
+      this.editing = true;
+    },
+    onSave(value) {
+      this.editing = false;
+      this.$toast.add({
+        severity: 'success',
+        summary: value,
+        detail: value,
+        life: 3000,
+      });
+    },
+    onCancel() {
+      this.editing = false;
+    },
+  },
   computed: {
     ...mapState({
       id: (state) => state.id,
