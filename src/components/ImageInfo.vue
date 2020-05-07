@@ -16,7 +16,7 @@
         <div class="col-4">
           <stack :column-min-width="500" :gutter-width="5" :gutter-height="5" monitor-images-loaded>
             <stack-item style="transition: transform 300ms">
-              <img class="feed" :src="image.url" :alt="image.descripcion" />
+              <img class="feed" :src="image.url" :alt="image.descripcion"/>
             </stack-item>
           </stack>
         </div>
@@ -31,10 +31,12 @@
             v-if="follows.some((res) => res.id === creatorId)"
             variant="secondary"
             v-on:click="Unfollow(followId, token)"
-            >Dejar de Seguir</b-button
+          >Dejar de Seguir
+          </b-button
           >
           <b-button v-else variant="info" v-on:click="Follow(userId, creatorId, token)"
-            >Seguir</b-button
+          >Seguir
+          </b-button
           >
         </div>
       </div>
@@ -43,7 +45,7 @@
 </template>
 
 <script>
-// import { Stack, StackItem } from 'vue-stack-grid';
+import { Stack, StackItem } from 'vue-stack-grid';
 import { mapState } from 'vuex';
 import DELETE_FOLLOW from '../graphql/deleteFollow.gql';
 import CREATE_FOLLOW from '../graphql/createUserFollow.gql';
@@ -52,7 +54,10 @@ import ALL_FOLLOWS from '../graphql/allUserFollow.gql';
 
 export default {
   name: 'ImageInfo',
-  components: {},
+  components: {
+    Stack,
+    StackItem,
+  },
   props: {
     image: {
       type: Object,
@@ -98,7 +103,10 @@ export default {
       this.$apollo
         .mutate({
           mutation: CREATE_FOLLOW,
-          variables: { userFollower, userFollowing },
+          variables: {
+            userFollower,
+            userFollowing,
+          },
           context: { headers: { Authorization: token } },
         })
         .then(() => {
@@ -134,7 +142,7 @@ export default {
 };
 </script>
 <style>
-#ImageInfo {
-  margin-top: 5vh;
-}
+  #ImageInfo {
+    margin-top: 5vh;
+  }
 </style>

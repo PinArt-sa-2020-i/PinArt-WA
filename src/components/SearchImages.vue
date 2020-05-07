@@ -1,17 +1,6 @@
 <template>
   <div id="feed-image">
     <div class="container">
-      <ApolloQuery
-        :query="require('../graphql/getMultimediaByTag.gql')"
-        :variables="{ tagId }"
-        :context="{ headers: { Authorization: token } }"
-      >
-        <template v-slot="{ result: { loading, error, data } }">
-          <div v-if="data" class="result apollo" style="display: none">
-            {{ (images = data.getMultimediaByTag) }}
-          </div>
-        </template>
-      </ApolloQuery>
 
       <stack :column-min-width="200" :gutter-width="5" :gutter-height="5" monitor-images-loaded>
         <stack-item v-for="(image, i) in images" :key="i" style="transition: transform 300ms">
@@ -39,6 +28,7 @@
 <script>
 import { Stack, StackItem } from 'vue-stack-grid';
 import { mapState } from 'vuex';
+import SEARCH_FEED from '../graphql/getMultimediaByTag.gql';
 
 export default {
   name: 'feed-image',
@@ -59,7 +49,29 @@ export default {
       token: (state) => state.token,
     }),
   },
-  created() {},
+  methods: {
+    // eslint-disable-next-line vue/no-async-in-computed-properties,vue/return-in-computed-property
+    async updateQuery() {
+      // eslint-disable-next-line vue/no-async-in-computed-properties
+      const res = await this.$apollo.query({
+        fetchPolicy: 'no-cache',
+        query: SEARCH_FEED,
+        variables: {
+          tagId: this.tagId,
+        },
+        context: {
+          headers: {
+            Authorization: this.token,
+          },
+        },
+      });
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      this.images = res.data.getMultimediaByTag;
+    },
+  },
+  created() {
+    this.updateQuery();
+  },
 };
 </script>
 <style>
