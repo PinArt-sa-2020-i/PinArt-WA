@@ -80,8 +80,6 @@ export default {
     },
     mutateNow() {
       const labels = this.selectedLabels.map((label) => String(label.id));
-      console.log(labels);
-
       this.$apollo.mutate({
         // eslint-disable-next-line global-require
         mutation: require('../graphql/addMultimedia.gql'),
@@ -98,6 +96,7 @@ export default {
         },
       })
         .then((results) => {
+          // eslint-disable-next-line no-console
           console.log(results);
           this.$toast.add({
             severity: 'success',

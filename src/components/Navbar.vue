@@ -10,9 +10,9 @@
         </div>
       </template>
     </ApolloQuery>
-    <b-navbar-brand @click="$router.push('/')">
+    <b-navbar-brand @click="$router.push('TagFeed')">
+      <img width="40vw" height="40vh" src="../assets/Logo.png" />
     </b-navbar-brand>
-      <img width="40vw" height="40vh" src="../assets/logo.svg" />
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -36,7 +36,7 @@
           <!-- Using 'button-content' slot -->
           <template v-slot:button-content> </template>
           <b-dropdown-item @click="$router.push('Profile')">Perfil</b-dropdown-item>
-          <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+          <b-dropdown-item href="/">Sign Out</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
@@ -69,8 +69,6 @@ export default {
       console.log('routing to avatar view');
     },
     Save(select) {
-      // eslint-disable-next-line no-console
-      console.log('First Select: ', select.value);
       this.$router.push({
         name: 'SearchFeed',
         params: {
