@@ -18,8 +18,8 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item @click="$router.push('TagFeed')">Inicio</b-nav-item>
-        <b-nav-item @click="$router.push('UsersFeed')">Siguiendo</b-nav-item>
+        <b-nav-item @click="$router.push({ path:'/tagfeed' })">Inicio</b-nav-item>
+        <b-nav-item @click="$router.push({ path: '/usersfeed' })">Siguiendo</b-nav-item>
       </b-navbar-nav>
 
       <div class="search">
@@ -69,15 +69,19 @@ export default {
       console.log('routing to avatar view');
     },
     Save(select) {
-      this.$router.push({
-        name: 'SearchFeed',
-        params: {
-          otherProp: {
+      this.$router
+        .push({
+          name: 'SearchFeed',
+          params: {
             selected: select.value,
-            previous: 'TagsFeed',
+            otherProp: {
+              selected: select.value,
+              previous: 'TagsFeed',
+            },
           },
-        },
-      });
+        })
+        // eslint-disable-next-line no-unused-vars
+        .catch((err) => {});
     },
   },
 };

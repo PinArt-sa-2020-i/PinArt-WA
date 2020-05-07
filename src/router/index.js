@@ -59,7 +59,7 @@ const routes = [
     beforeEnter: requireAuth,
   },
   {
-    path: '/search',
+    path: '/search/:selected',
     name: 'SearchFeed',
     component: Search,
     beforeEnter: requireAuth,
@@ -71,13 +71,13 @@ const routes = [
   {
     path: '/user',
     name: 'User',
-    component: () => import(/* webpackChunkName: "dashboard" */'@/views/User.vue'),
+    component: () => import(/* webpackChunkName: "dashboard" */ '@/views/User.vue'),
     beforeEnter: requireAuth,
   },
   {
     path: '/profile',
     name: 'Profile',
-    component: () => import(/* webpackChunkName: "dashboard" */'@/views/ProfileTabs.vue'),
+    component: () => import(/* webpackChunkName: "dashboard" */ '@/views/ProfileTabs.vue'),
     beforeEnter: requireAuth,
     children: [
       {
@@ -86,19 +86,18 @@ const routes = [
       },
       {
         path: '/multimedia',
-        component: () => import(/* webpackChunkName: "dashboard" */'@/views/profile/Multimedia.vue'),
+        component: () => import('@/views/profile/Multimedia.vue'),
       },
       {
         path: '/siguiendo',
-        component: () => import(/* webpackChunkName: "dashboard" */'@/views/profile/Siguiendo.vue'),
+        component: () => import('@/views/profile/Siguiendo.vue'),
       },
       {
         path: '/seguidores',
-        component: () => import(/* webpackChunkName: "dashboard" */'@/views/profile/Seguidores.vue'),
+        component: () => import('@/views/profile/Seguidores.vue'),
       },
     ],
   },
-
 ];
 
 const router = new VueRouter({
