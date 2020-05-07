@@ -1,0 +1,49 @@
+<template>
+  <div id="countFollowing">
+      <p class="stat-val">{{following.length}}</p>
+      <p class="stat-key">Siguiendo</p>
+    </div>
+</template>
+
+<script>
+import { mapState } from 'vuex';
+import QUERY_FOLLOWING from '../graphql/usersFollowingByFollower.gql';
+
+export default {
+  name: 'user-following',
+  props: {
+    labels: [],
+  },
+  data: () => ({
+    following: [],
+  }),
+  computed: {
+    ...mapState({
+      userId: (state) => state.id,
+      token: (state) => state.token,
+    }),
+  },
+  methods: {
+    queryFollowing() {
+      this.$apollo.query({
+        query: QUERY_FOLLOWING,
+        fetchPolicy: 'no-cache',
+        variables: {
+          userId: this.userId,
+        },
+        context: {
+          headers: {
+            Authorization: this.token,
+          },
+        },
+      })
+        .then((res) => {
+          this.following = res.data.usersFollowingByFollower;
+        });
+    },
+  },
+  created() {
+    this.queryFollowing();
+  },
+};
+</script>
