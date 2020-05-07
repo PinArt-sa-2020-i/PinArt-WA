@@ -1,19 +1,6 @@
 <template>
   <div id="follower">
     <div class="container">
-      <ApolloQuery
-        :query="require('../graphql/allUserFollow.gql')"
-        :context="{ headers : {Authorization : token}}"
-      >
-        <template v-slot="{ result: { loading, error, data } }">
-          <div
-            v-if="data"
-            class="result apollo"
-            style="display: none"
-          >{{ followers = data.allUserFollow}}
-           </div>
-        </template>
-      </ApolloQuery>
       <ul>
 
         <div v-for="item in followersFiltered" :key="item.id">

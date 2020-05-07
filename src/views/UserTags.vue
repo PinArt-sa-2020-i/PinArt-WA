@@ -5,16 +5,13 @@
     <h3>¿ Cuáles son tus gustos ?</h3>
     <div class="cards-list">
 
-      <div v-for="(label, idx) in dbLabels" class="card" :key="`label-${label.id}`"
-           v-bind:class="{ card_selected: label.selected}" @click="setSelected(idx)">
-        <!--        <div class="card_image"><img src="../assets/Logo.png"/></div>-->
+      <div v-for="(label, idx) in dbLabels" class="card" :key="`label-${idx}`"
+           :class="{card_selected: label.selected}" @click="setSelected(idx)">
         <div class="card_image">
-          <!--        <img src="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif"/>-->
-          <img src="../assets/Logo.png">
+          <img src="../assets/Logo.png" alt="">
         </div>
         <div class="card_title title-white">
           <p>{{label.name}}</p>
-          <h5>{{label.description}}</h5>
         </div>
       </div>
     </div>
@@ -34,7 +31,7 @@ export default {
   data() {
     return {
       selected: true,
-      dbLabels: [],
+      dbLabels: null,
     };
   },
   computed: {
@@ -87,7 +84,10 @@ export default {
         });
     },
     setSelected(idx) {
+      // eslint-disable-next-line no-console
+      console.log(idx);
       this.dbLabels[idx].selected = !this.dbLabels[idx].selected;
+      this.$forceUpdate();
     },
   },
   created() {
