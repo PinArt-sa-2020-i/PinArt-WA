@@ -78,7 +78,7 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: () => import(/* webpackChunkName: "dashboard" */ '@/views/ProfileTabs.vue'),
-    // beforeEnter: requireAuth,
+    beforeEnter: requireAuth,
     children: [
       {
         path: '',
