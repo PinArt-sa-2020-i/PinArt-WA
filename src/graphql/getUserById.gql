@@ -6,7 +6,8 @@ query userById($id: Int!){
     lastName
     correo
     profiles {
-        	id
+        	userId
+        	countryId
         	fechaNacimiento
         	genero
         	foto
