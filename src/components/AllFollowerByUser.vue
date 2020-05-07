@@ -27,6 +27,7 @@
 <script>
 import { mapState } from 'vuex';
 import FollowingUser from './UserData.vue';
+import QUERY_FOLLOWER from '../graphql/allUserFollow.gql';
 
 export default {
   name: 'follower',
@@ -47,6 +48,28 @@ export default {
     followersFiltered() {
       return this.followers.filter((item) => item.userFollowing.id === this.userId);
     },
+  },
+  methods: {
+    queryFollower() {
+      this.$apollo.query({
+        query: QUERY_FOLLOWER,
+        fetchPolicy: 'no-cache',
+        variables: {
+          userId: this.userId,
+        },
+        context: {
+          headers: {
+            Authorization: this.token,
+          },
+        },
+      })
+        .then((res) => {
+          this.followers = res.data.allUserFollow;
+        });
+    },
+  },
+  created() {
+    this.queryFollower();
   },
 };
 </script>

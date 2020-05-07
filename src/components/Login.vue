@@ -106,7 +106,7 @@ export default {
       this.$router.push('TagFeed');
     },
     onRegister(data) {
-      if (data.data.registerUser.id) {
+      if (data.data.registerUser.id === 0) {
         this.loginBackground();
         this.setForm();
         this.clearForm();

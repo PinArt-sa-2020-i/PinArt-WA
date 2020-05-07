@@ -1,21 +1,5 @@
 <template>
   <div id="countMultimedia">
-
-    <ApolloQuery
-      :query="require('../graphql/getMultimediaByUser.gql')"
-      :variables="{ id }"
-      :context="{ headers : {Authorization : token}}"
-    >
-      <template v-slot="{ result: { loading, error, data } }">
-        <div
-          v-if="data"
-          class="result apollo"
-          style="display: none"
-        >{{ multimedia = data.getMultimediaByUser }}
-        </div>
-
-      </template>
-    </ApolloQuery>
     <p class="stat-val">{{multimedia.length}}</p>
     <p class="stat-key">Multimedia</p>
   </div>
@@ -23,6 +7,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import QUERY_MULTIMEDIA from '../graphql/getMultimediaByUser.gql';
 
 export default {
   name: 'user-following',
@@ -37,6 +22,28 @@ export default {
       id: (state) => String(state.id),
       token: (state) => state.token,
     }),
+  },
+  methods: {
+    queryMultimedia() {
+      this.$apollo.query({
+        query: QUERY_MULTIMEDIA,
+        fetchPolicy: 'no-cache',
+        variables: {
+          id: this.id,
+        },
+        context: {
+          headers: {
+            Authorization: this.token,
+          },
+        },
+      })
+        .then((res) => {
+          this.multimedia = res.data.getMultimediaByUser;
+        });
+    },
+  },
+  created() {
+    this.queryMultimedia();
   },
 };
 </script>
