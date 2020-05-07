@@ -18,8 +18,8 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item @click="$router.push('TagFeed')">Inicio</b-nav-item>
-        <b-nav-item @click="$router.push('UsersFeed')">Siguiendo</b-nav-item>
+        <b-nav-item @click="$router.push({ path:'/tagfeed' })">Inicio</b-nav-item>
+        <b-nav-item @click="$router.push({ path: '/usersfeed' })">Siguiendo</b-nav-item>
       </b-navbar-nav>
 
       <div class="search">
