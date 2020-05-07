@@ -31,7 +31,8 @@
               <div class="columns is-mobile is-multiline">
                 <div class="column is-2">
                 <span class="header-icon user-profile-image">
-                  <img src="https://i.imgur.com/XTNBAGt.jpg">
+                  <img v-bind:src="user.profiles[0].foto"  alt="Foto de perfil">
+
                 </span>
                 </div>
                 <div class="column is-4-tablet is-10-mobile name">
@@ -91,7 +92,13 @@ export default {
     labels: [],
   },
   data: () => ({
-    user: [],
+    user: {
+      profiles: [
+        {
+          foto: '',
+        },
+      ],
+    },
   }),
   computed: {
     ...mapState({

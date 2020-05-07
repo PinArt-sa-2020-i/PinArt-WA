@@ -5,5 +5,13 @@ query userById($id: Int!){
     firstName
     lastName
     correo
+    profiles {
+        	id
+        	fechaNacimiento
+        	genero
+        	foto
+        	descripcion
+        	edad
+      }
   }
 }
