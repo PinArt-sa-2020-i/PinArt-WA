@@ -37,7 +37,7 @@
           <template v-slot:button-content> </template>
           <b-dropdown-item @click="$router.push('Profile')">Perfil</b-dropdown-item>
 
-          <b-dropdown-item @click="$router.push({ name: 'OtherProfile', params: { iduser: 14 } })">
+          <b-dropdown-item @click="$router.push({ name: 'OtherProfile', params: { iduser: 1 } })">
             Perfiltest
           </b-dropdown-item>
           <b-dropdown-item href="/">Sign Out</b-dropdown-item>

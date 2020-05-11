@@ -13,6 +13,10 @@ export default {
   name: 'user-following',
   props: {
     labels: [],
+    id: {
+      type: Number,
+      required: true,
+    },
   },
   data: () => ({
     following: [],
@@ -29,7 +33,7 @@ export default {
         query: QUERY_FOLLOWING,
         fetchPolicy: 'no-cache',
         variables: {
-          userId: this.userId,
+          userId: this.id,
         },
         context: {
           headers: {

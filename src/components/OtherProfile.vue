@@ -48,14 +48,13 @@
               <br/>
             </div>
             <div class="column is-2-tablet is-4-mobile has-text-centered">
-              <CountFollowing />
-              <div> {{id}}</div>
+              <CountFollowing :id="id" />
             </div>
             <div class="column is-2-tablet is-4-mobile has-text-centered">
-              <CountFollower />
+              <CountFollower :id="id" />
             </div>
             <div class="column is-2-tablet is-4-mobile has-text-centered">
-              <CountMultimedia />
+              <CountMultimedia :id="id"/>
             </div>
           </div>
         </div>
