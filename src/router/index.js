@@ -98,6 +98,12 @@ const routes = [
       },
     ],
   },
+  {
+    path: '/otherprofile/:iduser',
+    name: 'OtherProfile',
+    component: () => import(/* webpackChunkName: "dashboard" */ '@/views/OtherProfileTabs.vue'),
+    beforeEnter: requireAuth,
+  },
 ];
 
 const router = new VueRouter({

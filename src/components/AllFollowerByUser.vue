@@ -3,7 +3,7 @@
     <div class="container">
       <ul>
 
-        <div v-for="item in followersFiltered" :key="item.id">
+         <div v-for="item in followersFiltered" :key="item.id">
           <FollowingUser :id="item.userFollower.id"/>
         </div>
       </ul>
