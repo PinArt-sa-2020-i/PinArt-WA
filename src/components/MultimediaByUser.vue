@@ -17,8 +17,20 @@
           >
             <img class="feed" :src="image.url" :alt="image.descripcion" />
           </a>
-            <b-card v-bind:title="image.descripcion" >
+            <b-card class="text-center" v-bind:title="image.descripcion" >
+              <div class="tags has-addons">
+                <span class="tag is-primary" >{{image.etiquetas_relacionadas_ids}}</span>
+              </div>
               <DeleteMultimedia :image="image" @saved="onDelete"/>
+              <b-button variant="info" >
+                <b-icon icon="pencil-square" aria-hidden="true"></b-icon>
+              </b-button>
+              <b-button variant="warning" >
+                <b-icon icon="bookmark-fill" aria-hidden="true"></b-icon>
+              </b-button>
+              <template v-slot:footer>
+                <small class="text-muted " >Ultima Actualizacion {{image.updated_at}} </small>
+              </template>
             </b-card>
         </stack-item>
       </stack>
@@ -51,7 +63,6 @@ export default {
       this.$toast.add({
         severity: 'success',
         summary: value,
-        detail: value,
         life: 3000,
       });
     },
@@ -100,5 +111,9 @@ export default {
   }
   img {
     vertical-align: 0px;
+  }
+
+  button {
+    margin: 3px;
   }
 </style>
