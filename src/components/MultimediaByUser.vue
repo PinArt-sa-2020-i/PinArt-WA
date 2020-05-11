@@ -17,6 +17,9 @@
           >
             <img class="feed" :src="image.url" :alt="image.descripcion" />
           </a>
+            <b-card v-bind:title="image.descripcion" >
+              <DeleteMultimedia :image="image" @saved="onDelete"/>
+            </b-card>
         </stack-item>
       </stack>
     </div>
@@ -26,13 +29,16 @@
 <script>
 import { Stack, StackItem } from 'vue-stack-grid';
 import { mapState } from 'vuex';
+import DeleteMultimedia from '@/components/DeleteMultimedia.vue';
 import USERS_FEED from '../graphql/getMultimediaByUser.gql';
+
 
 export default {
   name: 'user-image',
   components: {
     Stack,
     StackItem,
+    DeleteMultimedia,
   },
   props: {
     labels: [],
@@ -40,6 +46,16 @@ export default {
   data: () => ({
     images: [],
   }),
+  methods: {
+    onDelete(value) {
+      this.$toast.add({
+        severity: 'success',
+        summary: value,
+        detail: value,
+        life: 3000,
+      });
+    },
+  },
   computed: {
     ...mapState({
       id: (state) => String(state.id),
@@ -81,5 +97,8 @@ export default {
     width: 100%;
     height: auto;
     border-radius: 12px;
+  }
+  img {
+    vertical-align: 0px;
   }
 </style>

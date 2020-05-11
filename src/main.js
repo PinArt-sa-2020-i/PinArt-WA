@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import bootstrapvue from 'bootstrap-vue';
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'primevue/resources/primevue.min.css';
@@ -23,7 +23,8 @@ import { createProvider } from './vue-apollo';
 
 Vue.config.productionTip = false;
 
-Vue.use(bootstrapvue);
+Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
 Vue.use(ToastService);
 Vue.component('Toast', Toast);
 Vue.component('Button', Button);
