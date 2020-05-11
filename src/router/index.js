@@ -93,8 +93,9 @@ const routes = [
         component: () => import('@/views/profile/Siguiendo.vue'),
       },
       {
-        path: '/seguidores',
+        path: '/seguidores/:id',
         component: () => import('@/views/profile/Seguidores.vue'),
+        // props: { id: 1 },
       },
     ],
   },

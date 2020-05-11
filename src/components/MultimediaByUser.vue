@@ -21,6 +21,7 @@
               <div class="tags has-addons">
                 <span class="tag is-primary" >{{image.etiquetas_relacionadas_ids}}</span>
               </div>
+              <template v-slot:footer>
               <DeleteMultimedia :image="image" @saved="onDelete"/>
               <b-button variant="info" >
                 <b-icon icon="pencil-square" aria-hidden="true"></b-icon>
@@ -28,8 +29,8 @@
               <b-button variant="warning" >
                 <b-icon icon="bookmark-fill" aria-hidden="true"></b-icon>
               </b-button>
-              <template v-slot:footer>
-                <small class="text-muted " >Ultima Actualizacion {{image.updated_at}} </small>
+
+
               </template>
             </b-card>
         </stack-item>

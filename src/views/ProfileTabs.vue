@@ -16,6 +16,7 @@
 
 <script>
 import Profile from '@/components/Profile.vue';
+import { mapState } from 'vuex';
 
 export default {
   components: {
@@ -38,10 +39,16 @@ export default {
         {
           label: 'Seguidores',
           icon: 'pi pi-fw pi-camera',
-          to: '/seguidores',
+          to: '/seguidores/1',
         },
       ],
     };
+  },
+  computed: {
+    ...mapState({
+      userId: (state) => state.id,
+      token: (state) => state.token,
+    }),
   },
 };
 </script>

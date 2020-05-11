@@ -1,6 +1,7 @@
 <template>
   <div class="tabmenudemo-content">
-    <AllFollowerByUser/>
+<!--    <AllFollowerByUser :id= id />-->
+    <AllFollowerByUser :id="Number($route.params.id)"/>
   </div>
 </template>
 
@@ -11,6 +12,7 @@ export default {
   components: {
     AllFollowerByUser,
   },
-
+  props: {
+  },
 };
 </script>
