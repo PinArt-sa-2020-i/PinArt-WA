@@ -5,6 +5,9 @@
 
          <div v-for="item in followersFiltered" :key="item.id">
           <FollowingUser :id="item.userFollower.id"/>
+           <div v-if="!isOther">
+              <button>Seguir</button>
+           </div>
         </div>
       </ul>
     </div>
@@ -26,6 +29,9 @@ export default {
     id: {
       type: Number,
       required: true,
+    },
+    isOther: {
+      type: Boolean,
     },
   },
   data: () => ({

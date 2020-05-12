@@ -24,7 +24,15 @@ export default {
   },
   data() {
     return {
-      items: [
+      items: [],
+    };
+  },
+  created() {
+    this.updateItems();
+  },
+  methods: {
+    updateItems() {
+      this.items = [
         {
           label: 'Multimedia',
           icon: 'pi pi-fw pi-image',
@@ -38,10 +46,11 @@ export default {
         {
           label: 'Seguidores',
           icon: 'pi pi-fw pi-camera',
-          to: '/seguidores',
+          to: '/otherprofile/seguidores/'.concat(this.$route.params.iduser),
         },
-      ],
-    };
+      ];
+    },
+
   },
 };
 

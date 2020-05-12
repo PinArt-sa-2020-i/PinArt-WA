@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '@/store';
+// import { mapState } from 'vuex';
 import Home from '../views/Home.vue';
 import Info from '../views/Info.vue';
 import Search from '../views/SearchFeed.vue';
+
 
 Vue.use(VueRouter);
 
@@ -14,6 +16,7 @@ const requireAuth = (to, from, next) => {
     next();
   }
 };
+
 
 const routes = [
   {
@@ -94,8 +97,10 @@ const routes = [
       },
       {
         path: '/seguidores/:id',
+        // path: '/seguidores',
         component: () => import('@/views/profile/Seguidores.vue'),
-        // props: { id: 1 },
+        // params: true,
+        props: { isOther: false },
       },
     ],
   },
@@ -104,6 +109,18 @@ const routes = [
     name: 'OtherProfile',
     component: () => import(/* webpackChunkName: "dashboard" */ '@/views/OtherProfileTabs.vue'),
     beforeEnter: requireAuth,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/profile/Seguidores.vue'),
+      },
+      {
+        path: '/otherprofile/seguidores/:id',
+        component: () => import('@/views/profile/Seguidores.vue'),
+        props: { isOther: true },
+      },
+
+    ],
   },
 ];
 
