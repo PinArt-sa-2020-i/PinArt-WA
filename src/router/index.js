@@ -84,19 +84,21 @@ const routes = [
     beforeEnter: requireAuth,
     children: [
       {
-        path: '',
+        path: '/profile/multimedia/:id',
         component: () => import('@/views/profile/Multimedia.vue'),
+        props: { isOther: false },
+        // params: { id: 1 },
       },
-      {
-        path: '/multimedia',
+      /* {
+        path: '/multimedia/:id',
         component: () => import('@/views/profile/Multimedia.vue'),
-      },
+      }, */
       {
-        path: '/siguiendo',
+        path: '/profile/siguiendo',
         component: () => import('@/views/profile/Siguiendo.vue'),
       },
       {
-        path: '/seguidores/:id',
+        path: '/profile/seguidores/:id',
         // path: '/seguidores',
         component: () => import('@/views/profile/Seguidores.vue'),
         // params: true,
@@ -113,6 +115,11 @@ const routes = [
       {
         path: '',
         component: () => import('@/views/profile/Seguidores.vue'),
+      },
+      {
+        path: '/otherprofile/multimedia/:id',
+        component: () => import('@/views/profile/Multimedia.vue'),
+        props: { isOther: true },
       },
       {
         path: '/otherprofile/seguidores/:id',

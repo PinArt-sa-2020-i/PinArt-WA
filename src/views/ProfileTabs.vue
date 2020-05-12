@@ -46,6 +46,8 @@ export default {
   },
   created() {
     this.updateItems();
+    // this.$router.push({ name: '/multimedia/', params: { iduser: this.userId() } });
+    // this.$router.push({ name: 'profile/'.concat(this.userId) });
   },
   methods: {
     updateItems() {
@@ -53,17 +55,17 @@ export default {
         {
           label: 'Multimedia',
           icon: 'pi pi-fw pi-image',
-          to: '/multimedia',
+          to: '/profile/multimedia'.concat(this.userId),
         },
         {
           label: 'Siguiendo',
           icon: 'pi pi-fw pi-camera',
-          to: '/siguiendo',
+          to: '/profile/siguiendo',
         },
         {
           label: 'Seguidores',
           icon: 'pi pi-fw pi-camera',
-          to: '/seguidores/'.concat(this.userId),
+          to: '/profile/seguidores/'.concat(this.userId),
         },
       ];
     },

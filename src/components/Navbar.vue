@@ -35,9 +35,11 @@
         <b-nav-item-dropdown right>
           <!-- Using 'button-content' slot -->
           <template v-slot:button-content> </template>
-          <b-dropdown-item @click="$router.push('Profile')">Perfil</b-dropdown-item>
-
-          <b-dropdown-item @click="$router.push({ name: 'OtherProfile', params: { iduser: 14 } })">
+         <!-- <b-dropdown-item @click="$router.push('Profile')">Perfil</b-dropdown-item>-->
+          <b-dropdown-item @click="$router.push({ path: `/profile/multimedia/1` })">
+            Perfil
+          </b-dropdown-item>
+          <b-dropdown-item @click="$router.push({ name: 'OtherProfile', params: { iduser: 2 } })">
             Perfiltest
           </b-dropdown-item>
           <b-dropdown-item href="/">Sign Out</b-dropdown-item>

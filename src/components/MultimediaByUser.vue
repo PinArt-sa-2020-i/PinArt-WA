@@ -3,7 +3,7 @@
     <div class="container">
       <stack :column-min-width="200" :gutter-width="5" :gutter-height="5" monitor-images-loaded>
         <stack-item v-for="(image, i) in images" :key="i" style="transition: transform 300ms">
-          <a
+<!--          <a
             @click="
               $router.push({
                 name: 'ImageInfo',
@@ -16,7 +16,8 @@
               })"
           >
             <img class="feed" :src="image.url" :alt="image.descripcion" />
-          </a>
+          </a>-->
+          <img class="feed" :src="image.url" :alt="image.descripcion" />
             <b-card class="text-center" v-bind:title="image.descripcion" >
               <div class="tags has-addons">
                 <span class="tag is-primary" >{{image.etiquetas_relacionadas_ids}}</span>
@@ -55,6 +56,13 @@ export default {
   },
   props: {
     labels: [],
+    id: {
+      type: Number,
+      required: true,
+    },
+    isOther: {
+      type: Boolean,
+    },
   },
   data: () => ({
     images: [],
@@ -70,7 +78,7 @@ export default {
   },
   computed: {
     ...mapState({
-      id: (state) => String(state.id),
+      // id: (state) => String(state.id),
       token: (state) => state.token,
     }),
   },
