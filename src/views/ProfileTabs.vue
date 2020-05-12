@@ -7,7 +7,7 @@
     </div>
     <div class="content-section implementation">
       <TabMenu :model="items" />
-      <router-view/>
+        <router-view/>
     </div>
 
   </div>
@@ -25,29 +25,10 @@ export default {
   data() {
     return {
       items: [],
-      /* [
-        {
-          label: 'Multimedia',
-          icon: 'pi pi-fw pi-image',
-          to: '/multimedia',
-        },
-        {
-          label: 'Siguiendo',
-          icon: 'pi pi-fw pi-camera',
-          to: '/siguiendo',
-        },
-        {
-          label: 'Seguidores',
-          icon: 'pi pi-fw pi-camera',
-          to: '/seguidores/'.concat(this.userid2),
-        },
-      ], */
     };
   },
   created() {
     this.updateItems();
-    // this.$router.push({ name: '/multimedia/', params: { iduser: this.userId() } });
-    // this.$router.push({ name: 'profile/'.concat(this.userId) });
   },
   methods: {
     updateItems() {
@@ -55,7 +36,7 @@ export default {
         {
           label: 'Multimedia',
           icon: 'pi pi-fw pi-image',
-          to: '/profile/multimedia'.concat(this.userId),
+          to: '/profile/multimedia/'.concat(this.$route.params.id),
         },
         {
           label: 'Siguiendo',
@@ -65,7 +46,7 @@ export default {
         {
           label: 'Seguidores',
           icon: 'pi pi-fw pi-camera',
-          to: '/profile/seguidores/'.concat(this.userId),
+          to: '/profile/seguidores/'.concat(this.$route.params.id),
         },
       ];
     },
@@ -73,12 +54,8 @@ export default {
   },
   computed: {
     ...mapState({
-      userId: (state) => state.id,
       token: (state) => state.token,
     }),
-    userid2() {
-      return 1;
-    },
   },
 };
 </script>

@@ -86,7 +86,7 @@ const routes = [
       {
         path: '/profile/multimedia/:id',
         component: () => import('@/views/profile/Multimedia.vue'),
-        props: { isOther: false },
+        // props: { isOther: false },
         // params: { id: 1 },
       },
       /* {
