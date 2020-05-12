@@ -80,6 +80,7 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
+    props: { isOther: false },
     component: () => import(/* webpackChunkName: "dashboard" */ '@/views/ProfileTabs.vue'),
     beforeEnter: requireAuth,
     children: [
@@ -89,8 +90,9 @@ const routes = [
         props: { isOther: false },
       },
       {
-        path: '/profile/siguiendo',
+        path: '/profile/siguiendo/:id',
         component: () => import('@/views/profile/Siguiendo.vue'),
+        props: { isOther: false },
       },
       {
         path: '/profile/seguidores/:id',
@@ -102,28 +104,32 @@ const routes = [
     ],
   },
   {
-    path: '/otherprofile/:iduser',
-    name: 'OtherProfile',
-    component: () => import(/* webpackChunkName: "dashboard" */ '@/views/OtherProfileTabs.vue'),
+    path: '/otherprofile',
+    name: 'otherprofile',
+    props: { isOther: true },
+    component: () => import(/* webpackChunkName: "dashboard" */ '@/views/ProfileTabs.vue'),
     beforeEnter: requireAuth,
     children: [
-      {
-        path: '',
-        component: () => import('@/views/profile/Seguidores.vue'),
-      },
       {
         path: '/otherprofile/multimedia/:id',
         component: () => import('@/views/profile/Multimedia.vue'),
         props: { isOther: true },
       },
       {
-        path: '/otherprofile/seguidores/:id',
-        component: () => import('@/views/profile/Seguidores.vue'),
+        path: '/otherprofile/siguiendo/:id',
+        component: () => import('@/views/profile/Siguiendo.vue'),
         props: { isOther: true },
       },
-
+      {
+        path: '/otherprofile/seguidores/:id',
+        // path: '/seguidores',
+        component: () => import('@/views/profile/Seguidores.vue'),
+        // params: true,
+        props: { isOther: true },
+      },
     ],
   },
+
 ];
 
 const router = new VueRouter({

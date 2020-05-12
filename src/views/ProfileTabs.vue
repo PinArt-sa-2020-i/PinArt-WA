@@ -2,7 +2,7 @@
   <div>
     <div class="content-section introduction">
       <div class="feature-intro">
-        <Profile />
+         <Profile :id="Number($route.params.id)" :isOther="isOther"/>
       </div>
     </div>
     <div class="content-section implementation">
@@ -20,6 +20,11 @@ import { mapState } from 'vuex';
 export default {
   components: {
     Profile,
+  },
+  props: {
+    isOther: {
+      type: Boolean,
+    },
   },
   data() {
     return {
@@ -40,7 +45,7 @@ export default {
         {
           label: 'Siguiendo',
           icon: 'pi pi-fw pi-camera',
-          to: '/profile/siguiendo',
+          to: '/profile/siguiendo/'.concat(this.$route.params.id),
         },
         {
           label: 'Seguidores',

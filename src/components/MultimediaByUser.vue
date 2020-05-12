@@ -23,8 +23,8 @@
                 <span class="tag is-primary" >{{image.etiquetas_relacionadas_ids}}</span>
               </div>
               <template v-slot:footer>
-              <DeleteMultimedia :image="image" @saved="onDelete"/>
-              <b-button variant="info" >
+              <DeleteMultimedia v-if="!isOther" :image="image" @saved="onDelete"/>
+              <b-button v-if="!isOther" variant="info" >
                 <b-icon icon="pencil-square" aria-hidden="true"></b-icon>
               </b-button>
               <b-button variant="warning" >

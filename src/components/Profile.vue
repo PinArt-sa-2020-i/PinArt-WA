@@ -19,15 +19,6 @@
 
          <div class="container profile">
            <Toast></Toast>
-            <div class="modal" id="edit-preferences-modal">
-              <div class="modal-background"></div>
-              <div class="modal-card">
-                <header class="modal-card-head">
-                  <p class="modal-card-title">Editar Perfil</p>
-                  <Button class="delete"></Button>
-                </header>
-              </div>
-            </div>
             <div class="section profile-heading">
               <div class="columns is-mobile is-multiline">
                 <div class="column is-2">
@@ -39,7 +30,8 @@
                   <p>
                     <span class="title is-bold">{{user.firstName +' ' + user.lastName}}</span>
                     <br/>
-                    <a class="button is-primary is-outlined" @click="edit" id="edit-preferences"
+                    <a v-if="!isOther" class="button is-primary is-outlined"
+                       @click="edit" id="edit-preferences"
                        style="margin: 5px 0">
                       Editar Perfil
                     </a>
@@ -63,7 +55,9 @@
                   </div>
 
                   <br/>
-                  <b-button v-b-modal.modal-no-backdrop>Agregar Multimedia</b-button>
+                  <b-button v-if="!isOther"  v-b-modal.modal-no-backdrop>
+                    Agregar Multimedia
+                  </b-button>
                   <b-modal id="modal-no-backdrop"
                            hide-backdrop content-class="shadow" title="Subir Multimedia">
                     <p class="my-2">
@@ -106,6 +100,14 @@ export default {
   },
   props: {
     labels: [],
+    id: {
+      type: Number,
+      required: true,
+    },
+    isOther: {
+      type: Boolean,
+      required: true,
+    },
   },
   data: () => (
     {
@@ -135,7 +137,7 @@ export default {
   },
   computed: {
     ...mapState({
-      id: (state) => state.id,
+      // id: (state) => state.id,
       token: (state) => state.token,
     }),
   },

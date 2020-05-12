@@ -22,13 +22,20 @@ export default {
   },
   props: {
     labels: [],
+    id: {
+      type: Number,
+      required: true,
+    },
+    isOther: {
+      type: Boolean,
+    },
   },
   data: () => ({
     following: [],
   }),
   computed: {
     ...mapState({
-      userId: (state) => state.id,
+      // userId: (state) => state.id,
       token: (state) => state.token,
     }),
   },
@@ -38,7 +45,7 @@ export default {
         query: QUERY_FOLLOWING,
         fetchPolicy: 'no-cache',
         variables: {
-          userId: this.userId,
+          userId: this.id,
         },
         context: {
           headers: {

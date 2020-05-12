@@ -19,10 +19,6 @@ export default {
     isOther: {
       type: Boolean,
     },
-    /* id: {
-      type: Number,
-      required: true,
-    }, */
   },
 };
 </script>
