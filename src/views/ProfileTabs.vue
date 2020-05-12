@@ -21,7 +21,6 @@ export default {
   components: {
     Profile,
   },
-  // beforeEnter: this.updateItems(),
   data() {
     return {
       items: [],

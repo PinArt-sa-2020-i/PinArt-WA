@@ -86,13 +86,8 @@ const routes = [
       {
         path: '/profile/multimedia/:id',
         component: () => import('@/views/profile/Multimedia.vue'),
-        // props: { isOther: false },
-        // params: { id: 1 },
+        props: { isOther: false },
       },
-      /* {
-        path: '/multimedia/:id',
-        component: () => import('@/views/profile/Multimedia.vue'),
-      }, */
       {
         path: '/profile/siguiendo',
         component: () => import('@/views/profile/Siguiendo.vue'),
