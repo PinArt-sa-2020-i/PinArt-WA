@@ -22,9 +22,14 @@
             <div class="section profile-heading">
               <div class="columns is-mobile is-multiline">
                 <div class="column is-2">
-                <span class="header-icon user-profile-image">
-                  <img v-bind:src="user.profiles[0].foto"  alt="Foto de perfil">
-                </span>
+                    <img v-if="user.profiles[0].foto" v-bind:src="user.profiles[0].foto"
+                         class="user__header-right" >
+                    <div v-else class="pin-user__avatar"></div>
+
+<!--               <span class="user__header-right">
+                  <img class="user__header-right" v-bind:src="user.profiles[0].foto"
+                       alt="Foto de perfil">
+                </span>-->
                 </div>
                 <div class="column is-4-tablet is-10-mobile name">
                   <p>

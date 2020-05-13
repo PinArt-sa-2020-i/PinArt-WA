@@ -11,7 +11,6 @@ import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice';
 import Listbox from 'primevue/listbox';
 import FileUpload from 'primevue/fileupload';
-import Calendar from 'primevue/calendar';
 import Button from 'primevue/button';
 import MultiSelect from 'primevue/multiselect';
 import TabMenu from 'primevue/tabmenu';
@@ -30,7 +29,6 @@ Vue.component('Toast', Toast);
 Vue.component('Button', Button);
 Vue.component('MultiSelect', MultiSelect);
 Vue.component('Listbox', Listbox);
-Vue.component('Calendar', Calendar);
 Vue.component('FileUpload', FileUpload);
 Vue.component('TabMenu', TabMenu);
 
