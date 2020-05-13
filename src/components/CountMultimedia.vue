@@ -27,6 +27,11 @@ export default {
       token: (state) => state.token,
     }),
   },
+  watch: {
+    id() {
+      this.queryMultimedia();
+    },
+  },
   methods: {
     queryMultimedia() {
       this.$apollo.query({
@@ -49,8 +54,5 @@ export default {
   created() {
     this.queryMultimedia();
   },
-  /* beforeUpdate() {
-    this.queryMultimedia();
-  }, */
 };
 </script>

@@ -27,6 +27,11 @@ export default {
       token: (state) => state.token,
     }),
   },
+  watch: {
+    id() {
+      this.queryFollowing();
+    },
+  },
   methods: {
     queryFollowing() {
       this.$apollo.query({
@@ -49,8 +54,5 @@ export default {
   created() {
     this.queryFollowing();
   },
-  /* beforeUpdate() {
-    this.queryFollowing();
-  }, */
 };
 </script>
