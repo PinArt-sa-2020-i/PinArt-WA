@@ -1,33 +1,54 @@
 <template>
-  <div id="profile">
-    <div class="container">
-      <ApolloQuery
-        :query="require('../graphql/getUserById.gql')"
-        :variables="{ id }"
-        :context="{ headers : {Authorization : token}}"
-      >
-        <template v-slot="{ result: { loading, error, data } }">
-          <div
-            v-if="data"
-            class="result apollo"
-            style="display: none"
-          >{{ user = data.userById }}
-          </div>
-        </template>
-      </ApolloQuery>
-      <div>
-          <span class="title is-bold">{{user.firstName +' ' + user.lastName}}</span>
+  <div id="userdata">
 
-      </div>
-    </div>
+    <ApolloQuery
+      :query="require('../graphql/getUserById.gql')"
+      :variables="{ id }"
+      :context="{ headers : {Authorization : token}}"
+    >
+      <template v-slot="{ result: { loading, error, data } }">
+        <div
+          v-if="data"
+          class="result apollo"
+          style="display: none"
+        >{{ user = data.userById }}
+        </div>
+      </template>
+    </ApolloQuery>
+
+    <b-card
+      :img-src="user.profiles[0].foto"
+      img-alt="Image"
+      img-top
+      tag="article"
+      style="max-width: 20rem;"
+      class="mb-2"
+    >
+      <template v-slot:header>
+        <a  @click="$router.push({ path:`/otherprofile/multimedia/${user.id}`})">
+          {{fullName}}
+        </a>
+      </template>
+      <b-card-body>
+        <b-card-sub-title class="mb-2">{{user.username}}</b-card-sub-title>
+        <b-card-text>
+          {{user.profiles[0].descripcion}}
+        </b-card-text>
+      </b-card-body>
+
+      <b-button href="#" variant="primary">Seguir</b-button>
+      <b-button href="#" variant="primary">Dejar de Seguir</b-button>
+    </b-card>
   </div>
+
+
 </template>
 
 <script>
 import { mapState } from 'vuex';
 
 export default {
-  name: 'profile',
+  name: 'datauser',
   components: {},
   props: {
     id: {
@@ -36,12 +57,24 @@ export default {
     },
   },
   data: () => ({
-    user: {},
+    user: {
+      firstName: '',
+      lastName: '',
+      profiles: [
+        {},
+      ],
+    },
   }),
+  methods: {
+
+  },
   computed: {
     ...mapState({
       token: (state) => state.token,
     }),
+    fullName() {
+      return this.user.firstName.concat(' ', this.user.lastName);
+    },
   },
 };
 </script>

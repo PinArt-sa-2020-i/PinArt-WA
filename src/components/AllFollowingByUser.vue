@@ -1,24 +1,24 @@
 <template>
-  <div id="profile">
+  <div id="following">
     <div class="container">
-      <ul>
+      <b-card-group deck>
         <div v-for="user in following" :key="user.id">
-             <FollowingUser :id="user.id"/>
+          <UserData :id="user.id"/>
         </div>
-      </ul>
+      </b-card-group>
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import FollowingUser from './UserData.vue';
+import UserData from './UserData.vue';
 import QUERY_FOLLOWING from '../graphql/usersFollowingByFollower.gql';
 
 export default {
   name: 'user-following',
   components: {
-    FollowingUser,
+    UserData,
   },
   props: {
     labels: [],
