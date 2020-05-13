@@ -49,5 +49,8 @@ export default {
   created() {
     this.queryMultimedia();
   },
+  beforeUpdate() {
+    this.queryMultimedia();
+  },
 };
 </script>

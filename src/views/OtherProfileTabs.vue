@@ -31,11 +31,9 @@ export default {
     };
   },
   created() {
-    console.log('Updating items on othertabs');
     this.updateItems();
   },
   beforeUpdate() {
-    console.log('before updated');
     this.updateItems();
   },
   methods: {

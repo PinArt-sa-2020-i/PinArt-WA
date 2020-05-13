@@ -25,7 +25,7 @@
       class="mb-2"
     >
       <template v-slot:header>
-        <a  @click="$router.push({ path:`/otherprofile/multimedia/${user.id}`})">
+        <a  href="#" @click="$router.push({ path:`/otherprofile/multimedia/${user.id}`})">
           {{fullName}}
         </a>
       </template>
@@ -36,8 +36,8 @@
         </b-card-text>
       </b-card-body>
 
-      <b-button href="#" variant="primary">Seguir</b-button>
-      <b-button href="#" variant="primary">Dejar de Seguir</b-button>
+     <!-- <b-button href="#" variant="primary">Seguir</b-button>
+      <b-button href="#" variant="primary">Dejar de Seguir</b-button>-->
     </b-card>
   </div>
 

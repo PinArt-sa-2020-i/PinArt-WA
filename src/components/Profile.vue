@@ -35,6 +35,11 @@
                        style="margin: 5px 0">
                       Editar Perfil
                     </a>
+                    <a v-if="isOther" class="button is-primary is-outlined"
+                       @click="$router.push({ path: `/profile/multimedia/${myid}` })" id="volver"
+                       style="margin: 5px 0">
+                       Volver a mi Perfil
+                    </a>
                     <br/>
                   </p>
                   <p>
@@ -137,7 +142,7 @@ export default {
   },
   computed: {
     ...mapState({
-      // id: (state) => state.id,
+      myid: (state) => state.id,
       token: (state) => state.token,
     }),
   },
