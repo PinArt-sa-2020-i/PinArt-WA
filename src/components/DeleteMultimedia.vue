@@ -1,4 +1,4 @@
-<template id="profile-edit">
+<template id="deletemultimedia">
   <b-button @click="mutateNow" variant="danger" >
     <b-icon icon="trash-fill" aria-hidden="true"></b-icon>
   </b-button>
@@ -16,8 +16,6 @@ export default {
       type: Object,
       required: true,
     },
-  },
-  data() {
   },
   methods: {
     onCancel() {
@@ -38,8 +36,9 @@ export default {
       })
         .then((results) => {
           // eslint-disable-next-line no-console
-          console.log(results);
+          // console.log(results);
           this.$emit('saved', results.data.deleteMultimedia);
+          // this.$router.push(this.$router.fullPath);
         });
     },
   },

@@ -1,5 +1,5 @@
 <template>
-  <div id="user-image">
+  <div id="multimediabyuser">
     <div class="container">
       <stack :column-min-width="200" :gutter-width="5" :gutter-height="5" monitor-images-loaded>
         <stack-item v-for="(image, i) in images" :key="i" style="transition: transform 300ms">
@@ -48,7 +48,7 @@ import USERS_FEED from '../graphql/getMultimediaByUser.gql';
 
 
 export default {
-  name: 'user-image',
+  name: 'multimediabyuser',
   components: {
     Stack,
     StackItem,
@@ -74,6 +74,7 @@ export default {
         summary: value,
         life: 3000,
       });
+      this.$emit('updated');
     },
   },
   computed: {
