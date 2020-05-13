@@ -49,8 +49,8 @@ export default {
   created() {
     this.queryFollowing();
   },
-  beforeUpdate() {
+  /* beforeUpdate() {
     this.queryFollowing();
-  },
+  }, */
 };
 </script>

@@ -36,8 +36,8 @@
         </b-card-text>
       </b-card-body>
 
-     <!-- <b-button href="#" variant="primary">Seguir</b-button>
-      <b-button href="#" variant="primary">Dejar de Seguir</b-button>-->
+      <FollowUser :creatorId="Number(user.id)" />
+
     </b-card>
   </div>
 
@@ -46,10 +46,13 @@
 
 <script>
 import { mapState } from 'vuex';
+import FollowUser from '@/components/FollowUser.vue';
 
 export default {
   name: 'datauser',
-  components: {},
+  components: {
+    FollowUser,
+  },
   props: {
     id: {
       type: Number,
@@ -58,6 +61,7 @@ export default {
   },
   data: () => ({
     user: {
+      id: '',
       firstName: '',
       lastName: '',
       profiles: [
