@@ -107,7 +107,7 @@ const routes = [
     path: '/otherprofile',
     name: 'otherprofile',
     props: { isOther: true },
-    component: () => import(/* webpackChunkName: "dashboard" */ '@/views/ProfileTabs.vue'),
+    component: () => import(/* webpackChunkName: "dashboard" */ '@/views/OtherProfileTabs.vue'),
     beforeEnter: requireAuth,
     children: [
       {

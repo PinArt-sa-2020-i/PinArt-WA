@@ -2,25 +2,28 @@
   <div>
     <div class="content-section introduction">
       <div class="feature-intro">
-        <OtherProfile :id="$route.params.iduser"/>
+        <Profile :id="Number($route.params.id)" :isOther="isOther"/>
       </div>
     </div>
-
     <div class="content-section implementation">
       <TabMenu :model="items" />
       <router-view/>
     </div>
 
   </div>
-<!--  <div>User {{ $route.params.iduser }}</div>-->
 </template>
 
 <script>
-import OtherProfile from '@/components/OtherProfile.vue';
+import Profile from '@/components/Profile.vue';
 
 export default {
   components: {
-    OtherProfile,
+    Profile,
+  },
+  props: {
+    isOther: {
+      type: Boolean,
+    },
   },
   data() {
     return {
@@ -36,17 +39,17 @@ export default {
         {
           label: 'Multimedia',
           icon: 'pi pi-fw pi-image',
-          to: '/multimedia',
+          to: '/otherprofile/multimedia/'.concat(this.$route.params.id),
         },
         {
           label: 'Siguiendo',
           icon: 'pi pi-fw pi-camera',
-          to: '/siguiendo',
+          to: '/otherprofile/siguiendo/'.concat(this.$route.params.id),
         },
         {
           label: 'Seguidores',
           icon: 'pi pi-fw pi-camera',
-          to: '/otherprofile/seguidores/'.concat(this.$route.params.iduser),
+          to: '/otherprofile/seguidores/'.concat(this.$route.params.id),
         },
       ];
     },

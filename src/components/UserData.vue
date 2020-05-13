@@ -17,6 +17,7 @@
       </ApolloQuery>
       <div>
           <span class="title is-bold">{{user.firstName +' ' + user.lastName}}</span>
+
       </div>
     </div>
   </div>

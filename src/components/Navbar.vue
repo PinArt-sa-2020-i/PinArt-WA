@@ -39,7 +39,7 @@
           <b-dropdown-item @click="$router.push({ path: `/profile/multimedia/${userId}` })">
             Perfil
           </b-dropdown-item>
-          <b-dropdown-item @click="$router.push({ path: `/profile/multimedia/2` })">
+          <b-dropdown-item @click="$router.push({ path: `/otherprofile/multimedia/2` })">
             Otro Perfil
           </b-dropdown-item>
           <b-dropdown-item href="/">Sign Out</b-dropdown-item>
