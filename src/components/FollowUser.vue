@@ -74,6 +74,7 @@ export default {
         })
         .then(() => {
           console.log('unfollowed');
+          this.$emit('updated');
         });
     },
     Follow(userFollower, userFollowing, token) {
@@ -88,6 +89,7 @@ export default {
         })
         .then(() => {
           console.log('followed');
+          this.$emit('updated');
         });
     },
   },

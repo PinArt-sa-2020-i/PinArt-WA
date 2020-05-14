@@ -46,6 +46,9 @@
                        Volver a mi Perfil
                     </a>
                     <br/>
+                    <FollowUser v-if="isOther" :creatorId="Number(id)"
+                                :key="componentKey"
+                                @updated="forceRerender"/>
                   </p>
                   <p>
                     <ProfileEdit @cancelled="onCancel" @saved="onSave"
@@ -98,6 +101,7 @@ import CountFollowing from '@/components/CountFollowing.vue';
 import CountMultimedia from '@/components/CountMultimedia.vue';
 import CountFollower from '@/components/CountFollower.vue';
 import ProfileEdit from '@/components/ProfileEdit.vue';
+import FollowUser from '@/components/FollowUser.vue';
 
 export default {
   name: 'profile',
@@ -107,6 +111,7 @@ export default {
     CountFollowing,
     CountMultimedia,
     CountFollower,
+    FollowUser,
   },
   props: {
     labels: [],
@@ -121,6 +126,7 @@ export default {
   },
   data: () => (
     {
+      componentKey: 0,
       editing: false,
       user: {
         profiles: [
@@ -129,6 +135,9 @@ export default {
       },
     }),
   methods: {
+    forceRerender() {
+      this.componentKey += 1;
+    },
     edit() {
       this.editing = true;
     },

@@ -36,7 +36,9 @@
         </b-card-text>
       </b-card-body>
 
-       <FollowUser :creatorId="Number(user.id)" />
+       <FollowUser :creatorId="Number(user.id)"
+                   :key="componentKey"
+                   @updated="forceRerender"/>
 
     </b-card>
   </div>
@@ -60,6 +62,7 @@ export default {
     },
   },
   data: () => ({
+    componentKey: 0,
     user: {
       id: '',
       firstName: '',
@@ -70,7 +73,9 @@ export default {
     },
   }),
   methods: {
-
+    forceRerender() {
+      this.componentKey += 1;
+    },
   },
   computed: {
     ...mapState({

@@ -19,8 +19,12 @@
           </a>-->
           <img class="feed" :src="image.url" :alt="image.descripcion" />
             <b-card class="text-center" v-bind:title="image.descripcion" >
-              <div class="tags has-addons">
-                <span class="tag is-primary" >{{image.etiquetas_relacionadas_ids}}</span>
+
+
+              <div class="tags">
+                <div v-for="idtag in image.etiquetas_relacionadas_ids" :key="idtag">
+                  <span  class="tag is-primary" > {{idtag}} </span>
+              </div>
               </div>
               <template v-slot:footer>
               <DeleteMultimedia v-if="!isOther" :image="image" @saved="onDelete"/>
@@ -125,5 +129,9 @@ export default {
 
   button {
     margin: 3px;
+  }
+
+  .tag {
+    margin: 0.1rem;
   }
 </style>
