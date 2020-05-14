@@ -23,7 +23,7 @@
 
               <div class="tags">
                 <div v-for="idtag in image.etiquetas_relacionadas_ids" :key="idtag">
-                  <span  class="tag is-primary" > {{idtag}} </span>
+                  <span  class="tag is-info is-light is-rounded" > {{idtag}} </span>
               </div>
               </div>
               <template v-slot:footer>
