@@ -115,15 +115,18 @@ body {
   background-color: #F1F1F1;
 }
 
-.user__header-right {
+.user__header {
   object-fit: cover;
   width: 14vw;
   height: 14vw;
   border-radius: 50%;
+  -webkit-box-shadow: -56px 56px 35px -67px rgba(191,219,216,1);
+  -moz-box-shadow: -56px 56px 35px -67px rgba(191,219,216,1);
+  box-shadow: -56px 56px 35px -67px rgba(191,219,216,1);
 
 }
 
-.pin-user__avatar {
+.user__avatar {
   object-fit: cover;
   width: 14vw;
   height: 14vw;
@@ -132,4 +135,17 @@ body {
   background-position-x: center;
   background-image: url("../profile.svg");
 
+}
+
+
+.card-img, .card-img-top {
+  border-top-left-radius: calc(.25rem - 1px);
+  border-top-right-radius: calc(.25rem - 1px);
+  width: 9vw;
+  height: 12vw;
+  object-fit: cover;
+}
+
+.card-deck {
+  margin-top: 15px;
 }

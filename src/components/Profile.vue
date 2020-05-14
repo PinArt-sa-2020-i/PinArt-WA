@@ -23,8 +23,8 @@
               <div class="columns is-mobile is-multiline">
                 <div class="column is-2">
                     <img v-if="user.profiles[0].foto" v-bind:src="user.profiles[0].foto"
-                         class="user__header-right" >
-                    <div v-else class="pin-user__avatar"></div>
+                         class="user__header" >
+                    <div v-else class="user__avatar"></div>
 
 <!--               <span class="user__header-right">
                   <img class="user__header-right" v-bind:src="user.profiles[0].foto"

@@ -29,12 +29,10 @@
           {{fullName}}
         </a>
       </template>
+
       <b-card-body>
         <b-card-sub-title class="mb-2">{{user.username}}</b-card-sub-title>
-        <b-card-text>
-          {{user.profiles[0].descripcion}}
-        </b-card-text>
-      </b-card-body>
+       </b-card-body>
 
        <FollowUser :creatorId="Number(user.id)"
                    :key="componentKey"
