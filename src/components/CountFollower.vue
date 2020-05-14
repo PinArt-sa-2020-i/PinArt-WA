@@ -17,6 +17,10 @@ export default {
   components: {},
   props: {
     labels: [],
+    id: {
+      type: Number,
+      required: true,
+    },
   },
   data: () => ({
     followers: [],
@@ -27,7 +31,7 @@ export default {
       token: (state) => state.token,
     }),
     followersFiltered() {
-      return this.followers.filter((item) => item.userFollowing.id === this.userId);
+      return this.followers.filter((item) => item.userFollowing.id === this.id);
     },
   },
   methods: {
