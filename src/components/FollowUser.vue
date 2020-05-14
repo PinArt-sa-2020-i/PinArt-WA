@@ -45,8 +45,19 @@ export default {
   data: () => ({
     user: {},
     follows: [],
+    userFollows: [],
     followId: Number,
   }),
+  watch: {
+    userFollows() {
+      if (this.follows.some((res) => res.id === this.creatorId)) {
+        this.followId = this.userFollows.find(
+          (element) => element.userFollower.id === this.userId
+            && element.userFollowing.id === this.creatorId,
+        ).id;
+      }
+    },
+  },
   computed: {
     ...mapState({
       userId: (state) => Number(state.id),
@@ -63,12 +74,6 @@ export default {
         })
         .then(() => {
           console.log('unfollowed');
-          // this.$router.push(this.$router.path);
-        /* if (this.previous === 'UsersFeed') {
-            this.$router.push('UsersFeed');
-          } else {
-            this.$router.push('TagFeed');
-          } */
         });
     },
     Follow(userFollower, userFollowing, token) {
@@ -83,18 +88,12 @@ export default {
         })
         .then(() => {
           console.log('followed');
-          // this.$router.push(this.$router.path);
-          /* if (this.previous === 'UsersFeed') {
-            this.$router.push('UsersFeed');
-          } else {
-            this.$router.push('TagFeed');
-          } */
         });
     },
   },
   async created() {
     const userId = Number(this.userId);
-    const { creatorId } = this;
+    // const { creatorId } = this;
     const { token } = this;
     const result = await this.$apollo.query({
       fetchPolicy: 'no-cache',
@@ -109,9 +108,10 @@ export default {
       context: { headers: { Authorization: token } },
     });
     this.follows = result.data.usersFollowingByFollower;
-    this.followId = allFollows.data.allUserFollow.find(
+    this.userFollows = allFollows.data.allUserFollow;
+    /* this.followId = allFollows.data.allUserFollow.find(
       (element) => element.userFollower.id === userId && element.userFollowing.id === creatorId,
-    ).id;
+    ).id; */
   },
 };
 </script>
