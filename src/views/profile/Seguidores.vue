@@ -1,6 +1,10 @@
 <template>
   <div class="tabmenudemo-content">
-    <AllFollowerByUser/>
+<!--    <AllFollowerByUser :id= id />-->
+
+    <AllFollowerByUser :id="Number($route.params.id)"
+                       :isOther="isOther"/>
+
   </div>
 </template>
 
@@ -11,6 +15,10 @@ export default {
   components: {
     AllFollowerByUser,
   },
-
+  props: {
+    isOther: {
+      type: Boolean,
+    },
+  },
 };
 </script>

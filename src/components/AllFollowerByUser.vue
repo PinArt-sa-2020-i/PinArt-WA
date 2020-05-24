@@ -1,28 +1,37 @@
 <template>
   <div id="follower">
     <div class="container">
-      <ul>
-
-        <div v-for="item in followersFiltered" :key="item.id">
-          <FollowingUser :id="item.userFollower.id"/>
-        </div>
-      </ul>
+      <b-card-group deck>
+      <div v-for="item in followersFiltered" :key="item.id">
+        <UserData :id="item.userFollower.id"/>
+        <!--        <div v-if="!isOther">
+                  <button>Seguir</button>
+                </div>-->
+      </div>
+      </b-card-group>
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import FollowingUser from './UserData.vue';
+import UserData from './UserData.vue';
 import QUERY_FOLLOWER from '../graphql/allUserFollow.gql';
 
 export default {
   name: 'follower',
   components: {
-    FollowingUser,
+    UserData,
   },
   props: {
     labels: [],
+    id: {
+      type: Number,
+      required: true,
+    },
+    isOther: {
+      type: Boolean,
+    },
   },
   data: () => ({
     followers: [],
@@ -33,7 +42,7 @@ export default {
       token: (state) => state.token,
     }),
     followersFiltered() {
-      return this.followers.filter((item) => item.userFollowing.id === this.userId);
+      return this.followers.filter((item) => item.userFollowing.id === this.id);
     },
   },
   methods: {

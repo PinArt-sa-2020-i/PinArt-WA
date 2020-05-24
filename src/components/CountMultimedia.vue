@@ -13,15 +13,24 @@ export default {
   name: 'user-following',
   props: {
     labels: [],
+    id: {
+      type: Number,
+      required: true,
+    },
   },
   data: () => ({
     multimedia: [],
   }),
   computed: {
     ...mapState({
-      id: (state) => String(state.id),
+      iduser: (state) => String(state.id),
       token: (state) => state.token,
     }),
+  },
+  watch: {
+    id() {
+      this.queryMultimedia();
+    },
   },
   methods: {
     queryMultimedia() {
@@ -29,7 +38,7 @@ export default {
         query: QUERY_MULTIMEDIA,
         fetchPolicy: 'no-cache',
         variables: {
-          id: this.id,
+          id: String(this.id),
         },
         context: {
           headers: {

@@ -31,18 +31,7 @@
       color: $primary-color;
     }
   }
-  .user__header-right {
-    flex: 1;
-    max-width: 128px;
-    margin-right: 15%;
-    .pin-user__avatar {
-      width: 100%;
-      padding-bottom: 100%;
-      height: 0;
-      background: $primary-color;
-      border-radius: 50%;
-    }
-  }
+
 }
 .user__profile-content {
   margin: 32px;
@@ -124,4 +113,39 @@ body {
   margin-bottom: 20px;
   padding: 20px;
   background-color: #F1F1F1;
+}
+
+.user__header {
+  object-fit: cover;
+  width: 14vw;
+  height: 14vw;
+  border-radius: 50%;
+  -webkit-box-shadow: -56px 56px 35px -67px rgba(191,219,216,1);
+  -moz-box-shadow: -56px 56px 35px -67px rgba(191,219,216,1);
+  box-shadow: -56px 56px 35px -67px rgba(191,219,216,1);
+
+}
+
+.user__avatar {
+  object-fit: cover;
+  width: 14vw;
+  height: 14vw;
+  background-size: 18vw 18vw;
+  background-position-y: center;
+  background-position-x: center;
+  background-image: url("../profile.svg");
+
+}
+
+
+.card-img, .card-img-top {
+  border-top-left-radius: calc(.25rem - 1px);
+  border-top-right-radius: calc(.25rem - 1px);
+  width: 9vw;
+  height: 12vw;
+  object-fit: cover;
+}
+
+.card-deck {
+  margin-top: 15px;
 }

@@ -1,6 +1,9 @@
 <template>
     <div class="tabmenudemo-content">
-        <MultimediaByUser/>
+        <MultimediaByUser :id="Number($route.params.id)"
+                          :isOther="isOther"
+                          :key="componentKey"
+                          @updated="forceRerender"/>
     </div>
 </template>
 
@@ -11,6 +14,20 @@ export default {
   components: {
     MultimediaByUser,
   },
-
+  props: {
+    isOther: {
+      type: Boolean,
+    },
+  },
+  data() {
+    return {
+      componentKey: 0,
+    };
+  },
+  methods: {
+    forceRerender() {
+      this.componentKey += 1;
+    },
+  },
 };
 </script>
