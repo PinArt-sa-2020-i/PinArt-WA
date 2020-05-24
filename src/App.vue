@@ -8,7 +8,8 @@
 <script>
 // @ is an alias to /src
 import Navbar from '@/components/Navbar.vue';
-import { mapState } from 'vuex';
+import * as constants from '@/store/constants';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   name: 'Home',
@@ -18,6 +19,11 @@ export default {
   computed: {
     ...mapState({
       isLogged: (state) => state.logged,
+    }),
+  },
+  methods: {
+    ...mapActions({
+      restoreSession: constants.RESTORE_SESSION,
     }),
   },
   created() {

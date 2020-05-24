@@ -1,6 +1,7 @@
 // Actions
 export const SESSION_LOGIN = 'SESSION_LOGIN';
 export const GET_IMAGE = 'GET_IMAGE';
+export const RESTORE_SESSION = 'RESTORE_SESSION';
 
 // Mutations
 export const SESSION_SET_LOGGED = 'SESSION_SET_LOGGED';

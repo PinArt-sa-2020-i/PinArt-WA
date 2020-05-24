@@ -23,9 +23,17 @@ export default new Vuex.Store({
       commit(constants.SESSION_SET_PROPERTY, { token: userInfo.token });
       commit(constants.SESSION_SET_PROPERTY, { id: userInfo.id });
       commit(constants.SESSION_SET_PROPERTY, { logged: true });
+      localStorage.setItem('pinart-token', userInfo.token);
+      localStorage.setItem('pinart-userId', userInfo.id);
+      localStorage.setItem('pinart-username', userInfo.username);
     },
     [constants.GET_IMAGE]: ({ commit }, image) => {
       commit(constants.SET_IMAGE, { selected_image: image });
+    },
+    [constants.RESTORE_SESSION]: ({ commit }) => {
+      commit(constants.SESSION_SET_PROPERTY, { usermane: localStorage.getItem('pinart-username') });
+      commit(constants.SESSION_SET_PROPERTY, { token: localStorage.getItem('pinart-token') });
+      commit(constants.SESSION_SET_PROPERTY, { id: localStorage.getItem('pinart-userId') });
     },
   },
   mutations: {
