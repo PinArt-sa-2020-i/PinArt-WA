@@ -2,17 +2,8 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-underscore-dangle */
 
-importScripts('https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/5.6.0/firebase-messaging.js');
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js');
-
-self.__precacheManifest = [].concat(self.__precacheManifest || []);
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
-
-workbox.routing.registerRoute(
-  new RegExp('https://firebasestorage.googleapis.com/v0/b/pinart-notifications.appspot.com/.*'),
-  new workbox.strategies.StaleWhileRevalidate(),
-);
+importScripts('https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/7.14.6/firebase-messaging.js');
 
 // Initialize Firebase
 const config = {
@@ -36,6 +27,5 @@ messaging.setBackgroundMessageHandler((payload) => {
     body: 'Background Message body.',
   };
 
-  return self.registration.showNotification(notificationTitle,
-    notificationOptions);
+  return self.registration.showNotification(notificationTitle, notificationOptions);
 });

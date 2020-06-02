@@ -15,15 +15,26 @@ const config = {
 };
 firebase.initializeApp(config);
 
+console.log(firebase.apps.length);
+
 // Initialize Cloud Firestore through Firebase
 const db = firebase.firestore();
-
 
 db.enablePersistence({ synchronizeTabs: true });
 
 const storage = firebase.storage();
 
 const messaging = firebase.messaging();
+
+messaging.onMessage((payload) => {
+  console.log('Message: ', payload);
+  const options = {
+    body: payload,
+  };
+  // eslint-disable-next-line no-unused-vars
+  const notification = new Notification('Notificación', options);
+  window.alert(payload.notification.body);
+});
 
 
 export default {

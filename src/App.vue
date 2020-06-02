@@ -2,9 +2,6 @@
   <div id="app">
     <Navbar v-if="isLogged" />
     <router-view />
-    <v-btn @click="getMessagingToken">
-      <v-icon>notifications_none</v-icon>
-    </v-btn>
   </div>
 </template>
 
@@ -14,6 +11,8 @@ import Navbar from '@/components/Navbar.vue';
 import firebase from '@/configFirebase.js';
 import axios from 'axios';
 import { mapState } from 'vuex';
+
+const serverKey = require('./serverKey');
 
 const { messaging } = firebase;
 
@@ -28,24 +27,26 @@ export default {
     }),
   },
   created() {
+    this.getTopics();
     if (this.isLogged) {
       this.$router.push('Home');
     }
   },
-  data() {
-    return {
-      //
-    };
-  },
+  data: () => ({
+    topics: [],
+  }),
   mounted() {
+    this.getMessagingToken();
     this.listenTokenRefresh();
   },
   methods: {
     getMessagingToken() {
       messaging.usePublicVapidKey('BNdN95LdBikRiuIZtkK_FgLpZsyFZe8Ozbf8V4F5E7JAMrgP2BKP2oYrDIgapA0ICDSHetxicR4wgajgYdbUJeU');
+      console.log('GETMESSAGING');
       messaging
         .getToken()
         .then(async (token) => {
+          console.log(token);
           if (token) {
             const currentMessageToken = window.localStorage.getItem('messagingToken');
             console.log('token will be updated', currentMessageToken !== token);
@@ -98,6 +99,20 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+    },
+    getTopics() {
+      const MessageToken = window.localStorage.getItem('messagingToken');
+      axios.get(`https://iid.googleapis.com/iid/info/${MessageToken}?details=true`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `key=${serverKey}`,
+          },
+        }).then((res) => {
+        console.log(res.data.rel.topics);
+        // window.localStorage.setItem('topics', res.rel.topics);
+        // this.topics = res.rel.topics;
+      });
     },
   },
 };
