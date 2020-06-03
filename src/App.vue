@@ -9,7 +9,7 @@
 // @ is an alias to /src
 import Navbar from '@/components/Navbar.vue';
 import * as constants from '@/store/constants';
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'Home',
@@ -17,8 +17,8 @@ export default {
     Navbar,
   },
   computed: {
-    ...mapState({
-      isLogged: (state) => state.logged,
+    ...mapGetters({
+      isLogged: constants.SESSION_IS_LOGGED,
     }),
   },
   methods: {
@@ -28,6 +28,9 @@ export default {
   },
   created() {
     if (this.isLogged) {
+      this.$router.push('Home');
+    } else {
+      this.restoreSession();
       this.$router.push('Home');
     }
   },

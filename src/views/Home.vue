@@ -3,7 +3,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
+import * as constants from '@/store/constants';
 import Login from '@/components/Login.vue';
 
 export default {
@@ -12,8 +13,8 @@ export default {
     Login,
   },
   computed: {
-    ...mapState({
-      isLogged: (state) => state.logged,
+    ...mapGetters({
+      isLogged: constants.SESSION_IS_LOGGED,
     }),
   },
 };

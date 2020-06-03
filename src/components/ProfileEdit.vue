@@ -53,6 +53,7 @@ export default {
   methods: {
     onEdit(data) {
       if (data) {
+        // eslint-disable-next-line no-console
         console.log('profile saved');
         this.$emit('saved', 'someValue');
       }
@@ -61,6 +62,7 @@ export default {
       this.$emit('cancelled', 'someValue');
     },
     onPhotoSave(value) {
+      // eslint-disable-next-line no-console
       console.log(value);
       this.profile.foto = value;
     },

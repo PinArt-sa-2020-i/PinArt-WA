@@ -73,6 +73,7 @@ export default {
           context: { headers: { Authorization: token } },
         })
         .then(() => {
+          // eslint-disable-next-line no-console
           console.log('unfollowed');
           this.$emit('updated');
         });
@@ -88,6 +89,7 @@ export default {
           context: { headers: { Authorization: token } },
         })
         .then(() => {
+          // eslint-disable-next-line no-console
           console.log('followed');
           this.$emit('updated');
         });

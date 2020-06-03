@@ -49,12 +49,11 @@ export default {
   },
   async created() {
     const userId = String(this.userId);
-    const { token } = this;
     const result = await this.$apollo.query({
       fetchPolicy: 'no-cache',
       query: TAGS_FEED,
       variables: { userId },
-      context: { headers: { Authorization: token } },
+      context: { headers: { Authorization: this.token } },
     });
     this.images = result.data.getUsersFeed;
   },
