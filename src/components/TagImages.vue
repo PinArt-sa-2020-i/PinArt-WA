@@ -1,17 +1,6 @@
 <template>
   <div id="feed-image">
     <div class="container">
-      <ApolloQuery
-        :query="require('../graphql/getTagsFeed.gql')"
-        :variables="{ userId }"
-        :context="{ headers: { Authorization: token } }"
-      >
-        <template v-slot="{ result: { loading, error, data } }">
-          <div v-if="data" class="result apollo" style="display: none">
-            {{ (images = data.getTagsFeed) }}
-          </div>
-        </template>
-      </ApolloQuery>
       <stack :column-min-width="200" :gutter-width="5" :gutter-height="5" monitor-images-loaded>
         <stack-item v-for="(image, i) in images" :key="i" style="transition: transform 300ms">
           <a
