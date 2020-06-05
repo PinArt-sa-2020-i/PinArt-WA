@@ -68,7 +68,6 @@ export default {
     });
     this.follows = following.data.usersFollowingByFollower;
     this.images = result.data.getUsersFeed;
-    console.log(this.follows);
   },
 };
 </script>
