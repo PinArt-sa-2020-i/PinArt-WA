@@ -27,7 +27,8 @@
 <script>
 import { Stack, StackItem } from 'vue-stack-grid';
 import { mapState } from 'vuex';
-import TAGS_FEED from '../graphql/getTagsFeed.gql';
+import TAGS_FEED from '../graphql/getUsersFeed.gql';
+import USER_FOLLOWING from '../graphql/usersFollowingByFollower.gql';
 
 export default {
   name: 'feed-image',
@@ -40,6 +41,7 @@ export default {
   },
   data: () => ({
     images: [],
+    follows: [],
   }),
   computed: {
     ...mapState({
@@ -49,6 +51,7 @@ export default {
   },
   async created() {
     const userId = String(this.userId);
+    const userInt = Number(this.userId);
     const { token } = this;
     const result = await this.$apollo.query({
       fetchPolicy: 'no-cache',
@@ -57,6 +60,15 @@ export default {
       context: { headers: { Authorization: token } },
     });
     this.images = result.data.getTagsFeed;
+    const following = await this.$apollo.query({
+      fetchPolicy: 'no-cache',
+      query: USER_FOLLOWING,
+      variables: { userId: userInt },
+      context: { headers: { Authorization: token } },
+    });
+    this.follows = following.data.usersFollowingByFollower;
+    this.images = result.data.getUsersFeed;
+    console.log(this.follows);
   },
 };
 </script>

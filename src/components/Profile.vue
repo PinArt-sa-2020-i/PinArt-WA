@@ -18,37 +18,62 @@
       </ApolloQuery>
 
          <div class="container profile">
-            <div class="modal" id="edit-preferences-modal">
-              <div class="modal-background"></div>
-              <div class="modal-card">
-                <header class="modal-card-head">
-                  <p class="modal-card-title">Editar Perfil</p>
-                  <Button class="delete"></Button>
-                </header>
-              </div>
-            </div>
+           <Toast></Toast>
             <div class="section profile-heading">
               <div class="columns is-mobile is-multiline">
                 <div class="column is-2">
-                <span class="header-icon user-profile-image">
-                  <img src="https://i.imgur.com/XTNBAGt.jpg">
-                </span>
+                    <img v-if="user.profiles[0].foto" v-bind:src="user.profiles[0].foto"
+                         class="user__header" >
+                    <div v-else class="user__avatar"></div>
+
+<!--               <span class="user__header-right">
+                  <img class="user__header-right" v-bind:src="user.profiles[0].foto"
+                       alt="Foto de perfil">
+                </span>-->
                 </div>
                 <div class="column is-4-tablet is-10-mobile name">
                   <p>
                     <span class="title is-bold">{{user.firstName +' ' + user.lastName}}</span>
                     <br/>
-                    <a class="button is-primary is-outlined" href="#" id="edit-preferences"
+                    <a v-if="!isOther" class="button is-primary is-outlined"
+                       @click="edit" id="edit-preferences"
                        style="margin: 5px 0">
                       Editar Perfil
                     </a>
+                    <a v-if="isOther" class="button is-primary is-outlined"
+                       @click="$router.push({ path: `/profile/multimedia/${myid}` })" id="volver"
+                       style="margin: 5px 0">
+                       Volver a mi Perfil
+                    </a>
                     <br/>
+                    <FollowUser v-if="isOther" :creatorId="Number(id)"
+                                :key="componentKey"
+                                @updated="forceRerender"/>
                   </p>
+                  <p>
+                    <ProfileEdit @cancelled="onCancel" @saved="onSave"
+                                 v-if="editing" :profile="user.profiles[0]" />
+                  </p>
+
+                  <div v-if="!editing">
+                    <p class="tagline">
+                      {{user.profiles[0].fechaNacimiento}}
+                    </p>
+                    <p class="tagline">
+                      {{user.profiles[0].genero}}
+                    </p>
+                    <p class="tagline">
+                      {{user.profiles[0].descripcion}}
+                    </p>
+                  </div>
                   <p class="tagline">
-                    La descripcion iria aca
+                    {{user.profiles[0].gustos}}
                   </p>
+
                   <br/>
-                  <b-button v-b-modal.modal-no-backdrop>Agregar Multimedia</b-button>
+                  <b-button v-if="!isOther"  v-b-modal.modal-no-backdrop>
+                    Agregar Multimedia
+                  </b-button>
                   <b-modal id="modal-no-backdrop"
                            hide-backdrop content-class="shadow" title="Subir Multimedia">
                     <p class="my-2">
@@ -57,13 +82,13 @@
                   </b-modal>
                 </div>
                 <div class="column is-2-tablet is-4-mobile has-text-centered">
-                  <CountFollowing />
+                  <CountFollowing :id="id"/>
                 </div>
                 <div class="column is-2-tablet is-4-mobile has-text-centered">
-                  <CountFollower />
+                  <CountFollower :id="id" />
                 </div>
                 <div class="column is-2-tablet is-4-mobile has-text-centered">
-                  <CountMultimedia />
+                  <CountMultimedia :id="id" />
                 </div>
               </div>
             </div>
@@ -78,24 +103,65 @@ import UploadMultimedia from '@/components/UploadMultimedia.vue';
 import CountFollowing from '@/components/CountFollowing.vue';
 import CountMultimedia from '@/components/CountMultimedia.vue';
 import CountFollower from '@/components/CountFollower.vue';
+import ProfileEdit from '@/components/ProfileEdit.vue';
+import FollowUser from '@/components/FollowUser.vue';
 
 export default {
   name: 'profile',
   components: {
+    ProfileEdit,
     UploadMultimedia,
     CountFollowing,
     CountMultimedia,
     CountFollower,
+    FollowUser,
   },
   props: {
     labels: [],
+    id: {
+      type: Number,
+      required: true,
+    },
+    isOther: {
+      type: Boolean,
+      required: true,
+    },
   },
-  data: () => ({
-    user: [],
-  }),
+  data: () => (
+    {
+      componentKey: 0,
+      editing: false,
+      user: {
+        profiles: [
+          {
+            gustos: '',
+          },
+        ],
+      },
+    }),
+  methods: {
+    forceRerender() {
+      this.componentKey += 1;
+    },
+    edit() {
+      this.editing = true;
+    },
+    onSave(value) {
+      this.editing = false;
+      this.$toast.add({
+        severity: 'success',
+        summary: value,
+        detail: value,
+        life: 3000,
+      });
+    },
+    onCancel() {
+      this.editing = false;
+    },
+  },
   computed: {
     ...mapState({
-      id: (state) => state.id,
+      myid: (state) => state.id,
       token: (state) => state.token,
     }),
   },

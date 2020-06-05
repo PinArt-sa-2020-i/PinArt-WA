@@ -2,12 +2,12 @@
   <div>
     <div class="content-section introduction">
       <div class="feature-intro">
-         <Profile :id="Number($route.params.id)" :isOther="isOther"/>
+        <Profile :id="Number($route.params.id)" :isOther="isOther"/>
       </div>
     </div>
     <div class="content-section implementation">
       <TabMenu :model="items" />
-        <router-view/>
+      <router-view/>
     </div>
 
   </div>
@@ -15,7 +15,6 @@
 
 <script>
 import Profile from '@/components/Profile.vue';
-import { mapState } from 'vuex';
 
 export default {
   components: {
@@ -34,32 +33,31 @@ export default {
   created() {
     this.updateItems();
   },
+  beforeUpdate() {
+    this.updateItems();
+  },
   methods: {
     updateItems() {
       this.items = [
         {
           label: 'Multimedia',
           icon: 'pi pi-fw pi-image',
-          to: '/profile/multimedia/'.concat(this.$route.params.id),
+          to: '/otherprofile/multimedia/'.concat(this.$route.params.id),
         },
         {
           label: 'Siguiendo',
           icon: 'pi pi-fw pi-camera',
-          to: '/profile/siguiendo/'.concat(this.$route.params.id),
+          to: '/otherprofile/siguiendo/'.concat(this.$route.params.id),
         },
         {
           label: 'Seguidores',
           icon: 'pi pi-fw pi-camera',
-          to: '/profile/seguidores/'.concat(this.$route.params.id),
+          to: '/otherprofile/seguidores/'.concat(this.$route.params.id),
         },
       ];
     },
 
   },
-  computed: {
-    ...mapState({
-      token: (state) => state.token,
-    }),
-  },
 };
+
 </script>

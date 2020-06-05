@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '@/store';
+// import { mapState } from 'vuex';
 import Home from '../views/Home.vue';
 import Info from '../views/Info.vue';
 import Search from '../views/SearchFeed.vue';
+
 
 Vue.use(VueRouter);
 
@@ -14,6 +16,7 @@ const requireAuth = (to, from, next) => {
     next();
   }
 };
+
 
 const routes = [
   {
@@ -77,27 +80,56 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
+    props: { isOther: false },
     component: () => import(/* webpackChunkName: "dashboard" */ '@/views/ProfileTabs.vue'),
     beforeEnter: requireAuth,
     children: [
       {
-        path: '',
+        path: '/profile/multimedia/:id',
         component: () => import('@/views/profile/Multimedia.vue'),
+        props: { isOther: false },
       },
       {
-        path: '/multimedia',
-        component: () => import('@/views/profile/Multimedia.vue'),
-      },
-      {
-        path: '/siguiendo',
+        path: '/profile/siguiendo/:id',
         component: () => import('@/views/profile/Siguiendo.vue'),
+        props: { isOther: false },
       },
       {
-        path: '/seguidores',
+        path: '/profile/seguidores/:id',
+        // path: '/seguidores',
         component: () => import('@/views/profile/Seguidores.vue'),
+        // params: true,
+        props: { isOther: false },
       },
     ],
   },
+  {
+    path: '/otherprofile',
+    name: 'otherprofile',
+    props: { isOther: true },
+    component: () => import(/* webpackChunkName: "dashboard" */ '@/views/OtherProfileTabs.vue'),
+    beforeEnter: requireAuth,
+    children: [
+      {
+        path: '/otherprofile/multimedia/:id',
+        component: () => import('@/views/profile/Multimedia.vue'),
+        props: { isOther: true },
+      },
+      {
+        path: '/otherprofile/siguiendo/:id',
+        component: () => import('@/views/profile/Siguiendo.vue'),
+        props: { isOther: true },
+      },
+      {
+        path: '/otherprofile/seguidores/:id',
+        // path: '/seguidores',
+        component: () => import('@/views/profile/Seguidores.vue'),
+        // params: true,
+        props: { isOther: true },
+      },
+    ],
+  },
+
 ];
 
 const router = new VueRouter({

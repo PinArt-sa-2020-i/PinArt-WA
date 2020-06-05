@@ -44,6 +44,9 @@
 
 <script>
 import { mapState } from 'vuex';
+import axios from 'axios';
+
+const serverKey = require('../serverKey');
 
 export default {
   name: 'Upload',
@@ -96,6 +99,27 @@ export default {
         },
       })
         .then((results) => {
+          axios.post('https://fcm.googleapis.com/fcm/send',
+            {
+              to: `/topics/${this.idUser}`,
+              priority: 'high',
+              notification: {
+                title: 'Pinart',
+                body: `${this.username} subió contenido`,
+                icon: '/img/Logo.8575bbed.png',
+              },
+            },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `key=${serverKey}`,
+              },
+            }).then((res) => {
+            console.log(res);
+          }).catch((err) => {
+            console.log(err);
+            console.log(err.response);
+          });
           // eslint-disable-next-line no-console
           console.log(results);
           this.$toast.add({
@@ -112,6 +136,7 @@ export default {
     ...mapState({
       token: (state) => state.token,
       idUser: (state) => String(state.id),
+      username: (state) => state.username,
     }),
   },
 };
