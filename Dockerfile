@@ -1,4 +1,4 @@
-FROM node:9.11.1-alpine
+FROM node:10.21.0-alpine
 
 # instalar un simple servidor http para servir nuestro contenido estático
 RUN npm install -g http-server
@@ -11,6 +11,7 @@ COPY package*.json ./
 
 # instalar dependencias del proyecto
 RUN npm install
+RUN npm install -g firebase-tools
 
 # copiar los archivos y carpetas del proyecto al directorio de trabajo actual (es decir, la carpeta 'app')
 COPY . .
