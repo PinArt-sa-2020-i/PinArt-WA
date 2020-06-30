@@ -1,9 +1,10 @@
+const fs = require('fs');
+
 module.exports = {
-  pwa: {
-    // configure the workbox plugin
-    workboxPluginMode: 'InjectManifest',
-    workboxOptions: {
-      swSrc: 'src/firebase-messaging-sw.js',
+  devServer: {
+    https: {
+      key: fs.readFileSync('./certs/server.key'),
+      cert: fs.readFileSync('./certs/server.cert'),
     },
   },
 };

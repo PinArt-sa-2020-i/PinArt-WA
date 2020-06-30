@@ -8,6 +8,7 @@ WORKDIR /app
 
 # copiar 'package.json' y 'package-lock.json' (si están disponibles)
 COPY package*.json ./
+COPY certs/ ./
 
 # instalar dependencias del proyecto
 RUN npm install
@@ -19,5 +20,5 @@ COPY . .
 # construir aplicación para producción minificada
 RUN npm run build
 
-EXPOSE 8080
-CMD [ "http-server", "dist" ]
+EXPOSE 443
+CMD [ "http-server", "dist" , "--ssl", "-C", "./certs/server.cert", "-K", "./certs/server.key"]
