@@ -71,7 +71,7 @@
                   <b-button v-if="!isOther"  v-b-modal.modal-no-backdrop>
                     Agregar Multimedia
                   </b-button>
-                  <b-modal id="modal-no-backdrop"
+                  <b-modal id="modal-no-backdrop" hide-footer
                            hide-backdrop content-class="shadow" title="Subir Multimedia">
                     <p class="my-2">
                       <UploadMultimedia />
