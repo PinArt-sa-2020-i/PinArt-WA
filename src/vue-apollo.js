@@ -11,7 +11,7 @@ const AUTH_TOKEN = 'apollo-token';
 // Http endpoint
 // eslint-disable-next-line operator-linebreak
 const httpEndpoint =
-  process.env.VUE_APP_GRAPHQL_HTTP || 'https://ec2-52-3-175-38.compute-1.amazonaws.com';
+  process.env.VUE_APP_GRAPHQL_HTTP || 'http://ec2-52-3-175-38.compute-1.amazonaws.com:5000/';
 // Files URL root
 // eslint-disable-next-line operator-linebreak
 export const filesRoot =

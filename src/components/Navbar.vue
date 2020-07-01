@@ -10,6 +10,16 @@
         </div>
       </template>
     </ApolloQuery>
+    <ApolloQuery
+      :query="require('../graphql/allUsers.gql')"
+      :context="{ headers: { Authorization: token } }"
+    >
+      <template v-slot="{ result: { loading, error, data } }">
+        <div v-if="data" class="result apollo" style="display : none">
+          {{ (users = data.allUsers) }}
+        </div>
+      </template>
+    </ApolloQuery>
     <b-navbar-brand @click="$router.push('TagFeed')">
       <img width="40vw" height="40vh" src="../assets/Logo.png" />
     </b-navbar-brand>
@@ -24,7 +34,9 @@
 
       <div class="search">
         <b-nav-form>
-          <autocomplete placeholder="Buscar" style="width: 70vw;" :source="labels" @selected="Save">
+          <autocomplete placeholder="Buscar"
+          style="width: 70vw;" :source="[... labels, ... users]" @selected="Save"
+          :results-display="formattedDisplay">
           </autocomplete>
         </b-nav-form>
       </div>
@@ -59,6 +71,7 @@ export default {
     logo: '/assets/images/Logo.png',
     sticky: true,
     labels: [],
+    users: [],
   }),
   computed: {
     ...mapState({
@@ -72,19 +85,30 @@ export default {
       console.log('routing to avatar view');
     },
     Save(select) {
-      this.$router
-        .push({
-          name: 'SearchFeed',
-          params: {
-            selected: select.value,
-            otherProp: {
+      if (select.display.includes('usuario')) {
+        this.$router.push({ path: `/otherprofile/multimedia/${select.value}` });
+      } else {
+        this.$router
+          .push({
+            name: 'SearchFeed',
+            params: {
               selected: select.value,
-              previous: 'TagsFeed',
+              otherProp: {
+                selected: select.value,
+                previous: 'TagsFeed',
+              },
             },
-          },
-        })
+          })
         // eslint-disable-next-line no-unused-vars
-        .catch((err) => {});
+          .catch((err) => {});
+      }
+    },
+    formattedDisplay(result) {
+      if (result.username) {
+        return `usuario ${result.username}`;
+      }
+
+      return result.name;
     },
   },
 };
