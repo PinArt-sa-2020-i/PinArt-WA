@@ -105,10 +105,10 @@ export default {
     },
     formattedDisplay(result) {
       if (result.username) {
-        return `usuario ${result.username}`;
+        return `U: ${result.username}`;
       }
 
-      return result.name;
+      return `T: ${result.name}`;
     },
   },
 };
