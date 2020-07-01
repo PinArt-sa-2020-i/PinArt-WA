@@ -47,10 +47,13 @@
 <script>
 import { Stack, StackItem } from 'vue-stack-grid';
 import { mapState } from 'vuex';
+import axios from 'axios';
 import DELETE_FOLLOW from '../graphql/deleteFollow.gql';
 import CREATE_FOLLOW from '../graphql/createUserFollow.gql';
 import USER_FOLLOWING from '../graphql/usersFollowingByFollower.gql';
 import ALL_FOLLOWS from '../graphql/allUserFollow.gql';
+
+const serverKey = require('../serverKey');
 
 export default {
   name: 'ImageInfo',
@@ -84,7 +87,15 @@ export default {
     }),
   },
   methods: {
-    Unfollow(followId, token) {
+    async Unfollow(followId, token) {
+      const tokenMess = window.localStorage.getItem('messagingToken');
+      await axios.delete(`https://iid.googleapis.com/iid/v1/${tokenMess}/rel/topics/${this.creatorId}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `key=${serverKey}`,
+          },
+        });
       this.$apollo
         .mutate({
           mutation: DELETE_FOLLOW,
@@ -99,7 +110,19 @@ export default {
           }
         });
     },
-    Follow(userFollower, userFollowing, token) {
+    async Follow(userFollower, userFollowing, token) {
+      const tokenMess = window.localStorage.getItem('messagingToken');
+      console.log('tokens', tokenMess);
+      console.log(`https://iid.googleapis.com/iid/v1/${tokenMess}/rel/topics/${this.creatorId}`);
+      await axios.post(`https://iid.googleapis.com/iid/v1/${tokenMess}/rel/topics/${this.creatorId}`,
+        {},
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `key=${serverKey}`,
+          },
+        });
+
       this.$apollo
         .mutate({
           mutation: CREATE_FOLLOW,
