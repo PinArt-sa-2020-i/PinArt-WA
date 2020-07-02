@@ -111,7 +111,6 @@ export default {
   }
   .container {
     width: 100vw;
-    margin: 0 auto;
     margin-top: 14px;
     margin-left: 0;
     margin-right: 0;

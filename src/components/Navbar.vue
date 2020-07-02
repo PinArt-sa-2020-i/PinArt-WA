@@ -55,9 +55,6 @@
           <b-dropdown-item @click="$router.push({ path: `/profile/multimedia/${userId}` })">
             Perfil
           </b-dropdown-item>
-          <b-dropdown-item @click="$router.push({ path: `/UserTags` })">
-            Etiquetas
-          </b-dropdown-item>
           <b-dropdown-item href="/">Sign Out</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
@@ -92,7 +89,7 @@ export default {
       console.log('routing to avatar view');
     },
     Save(select) {
-      if (select.display.includes('usuario')) {
+      if (select.display.includes('U:')) {
         this.$router.push({ path: `/otherprofile/multimedia/${select.value}` });
       } else {
         this.$router

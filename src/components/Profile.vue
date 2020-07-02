@@ -74,7 +74,7 @@
                   <b-modal id="modal-no-backdrop" hide-footer
                            hide-backdrop content-class="shadow" title="Subir Multimedia">
                     <p class="my-2">
-                      <UploadMultimedia />
+                      <UploadMultimedia @saved="onImageSaved" />
                     </p>
                   </b-modal>
                 </div>
@@ -152,6 +152,9 @@ export default {
     },
     onCancel() {
       this.editing = false;
+    },
+    onImageSaved() {
+      this.$emit('imageSaved');
     },
   },
   computed: {

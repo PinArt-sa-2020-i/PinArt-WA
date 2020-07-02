@@ -2,12 +2,12 @@
   <div>
     <div class="content-section introduction">
       <div class="feature-intro">
-         <Profile :id="Number($route.params.id)" :isOther="isOther"/>
+         <Profile :id="Number($route.params.id)" :isOther="isOther"   @imageSaved="forceRerender"/>
       </div>
     </div>
     <div class="content-section implementation">
       <TabMenu :model="items" />
-        <router-view/>
+        <router-view   :key="componentKey"/>
     </div>
 
   </div>
@@ -29,6 +29,7 @@ export default {
   data() {
     return {
       items: [],
+      componentKey: 0,
     };
   },
   created() {
@@ -54,7 +55,9 @@ export default {
         },
       ];
     },
-
+    forceRerender() {
+      this.componentKey += 1;
+    },
   },
   computed: {
     ...mapState({
