@@ -66,6 +66,9 @@
                       {{user.profiles[0].descripcion}}
                     </p>
                   </div>
+                  <p class="tagline">
+                    {{user.profiles[0].gustos}}
+                  </p>
 
                   <br/>
                   <b-button v-if="!isOther"  v-b-modal.modal-no-backdrop>
@@ -130,7 +133,9 @@ export default {
       editing: false,
       user: {
         profiles: [
-          {},
+          {
+            gustos: '',
+          },
         ],
       },
     }),

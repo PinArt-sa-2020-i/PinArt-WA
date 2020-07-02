@@ -59,6 +59,7 @@ export default {
       variables: { userId },
       context: { headers: { Authorization: token } },
     });
+    this.images = result.data.getTagsFeed;
     const following = await this.$apollo.query({
       fetchPolicy: 'no-cache',
       query: USER_FOLLOWING,
@@ -66,8 +67,10 @@ export default {
       context: { headers: { Authorization: token } },
     });
     this.follows = following.data.usersFollowingByFollower;
+
     this.images = result.data.getTagsFeed;
     console.log(this.follows);
+
   },
 };
 </script>
