@@ -22,18 +22,18 @@
 
 
               <div class="tags">
-                <div v-for="idtag in image.etiquetas_relacionadas_ids" :key="idtag">
+                <!--<div v-for="idtag in image.etiquetas_relacionadas_ids" :key="idtag">
                   <span  class="tag is-info is-light is-rounded" > {{idtag}} </span>
-              </div>
+              </div>-->
               </div>
               <template v-slot:footer>
               <DeleteMultimedia v-if="!isOther" :image="image" @saved="onDelete"/>
-              <b-button v-if="!isOther" variant="info" >
+              <!--<b-button v-if="!isOther" variant="info" >
                 <b-icon icon="pencil-square" aria-hidden="true"></b-icon>
-              </b-button>
-              <b-button variant="warning" >
+              </b-button>-->
+              <!--<b-button variant="warning" >
                 <b-icon icon="bookmark-fill" aria-hidden="true"></b-icon>
-              </b-button>
+              </b-button>-->
 
 
               </template>
@@ -111,7 +111,7 @@ export default {
   }
   .container {
     width: 100vw;
-    margin: 0 auto;
+    margin-top: 14px;
     margin-left: 0;
     margin-right: 0;
     max-width: 100vw;

@@ -27,7 +27,7 @@
 <script>
 import { Stack, StackItem } from 'vue-stack-grid';
 import { mapState } from 'vuex';
-import TAGS_FEED from '../graphql/getUsersFeed.gql';
+import TAGS_FEED from '../graphql/getTagsFeed.gql';
 import USER_FOLLOWING from '../graphql/usersFollowingByFollower.gql';
 
 export default {
@@ -67,7 +67,10 @@ export default {
       context: { headers: { Authorization: token } },
     });
     this.follows = following.data.usersFollowingByFollower;
-    this.images = result.data.getUsersFeed;
+
+    this.images = result.data.getTagsFeed;
+    console.log(this.follows);
+
   },
 };
 </script>

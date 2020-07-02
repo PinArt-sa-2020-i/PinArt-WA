@@ -128,6 +128,7 @@ export default {
             detail: 'Multimedia Cargada',
             life: 3000,
           });
+          this.$emit('saved');
         });
     },
 

@@ -1,4 +1,4 @@
-FROM node:9.11.1-alpine
+FROM node:10.21.0-alpine
 
 # instalar un simple servidor http para servir nuestro contenido estático
 RUN npm install -g http-server
@@ -8,9 +8,11 @@ WORKDIR /app
 
 # copiar 'package.json' y 'package-lock.json' (si están disponibles)
 COPY package*.json ./
+COPY certs/ ./
 
 # instalar dependencias del proyecto
 RUN npm install
+RUN npm install -g firebase-tools
 
 # copiar los archivos y carpetas del proyecto al directorio de trabajo actual (es decir, la carpeta 'app')
 COPY . .
@@ -18,5 +20,5 @@ COPY . .
 # construir aplicación para producción minificada
 RUN npm run build
 
-EXPOSE 8080
-CMD [ "http-server", "dist" ]
+EXPOSE 443
+CMD [ "http-server", "dist" , "--ssl", "-C", "./certs/server.cert", "-K", "./certs/server.key"]

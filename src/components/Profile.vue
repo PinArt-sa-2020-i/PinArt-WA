@@ -74,10 +74,10 @@
                   <b-button v-if="!isOther"  v-b-modal.modal-no-backdrop>
                     Agregar Multimedia
                   </b-button>
-                  <b-modal id="modal-no-backdrop"
+                  <b-modal id="modal-no-backdrop"  ref="my-modal" hide-footer
                            hide-backdrop content-class="shadow" title="Subir Multimedia">
                     <p class="my-2">
-                      <UploadMultimedia />
+                      <UploadMultimedia @saved="onImageSaved"   />
                     </p>
                   </b-modal>
                 </div>
@@ -157,6 +157,10 @@ export default {
     },
     onCancel() {
       this.editing = false;
+    },
+    onImageSaved() {
+      this.$refs['my-modal'].hide();
+      this.$emit('imageSaved');
     },
   },
   computed: {
