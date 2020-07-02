@@ -42,7 +42,11 @@
       </div>
       <!-- Right aligned nav items -->
       <b-navbar-nav>
-        <b-avatar class="align-top" button @click="avatarView" size="md"></b-avatar>
+        <b-avatar class="align-top"
+                  button @click="$router.push({ path: `/profile/multimedia/${userId}` })"
+                  size="md">
+          </b-avatar>
+
 
         <b-nav-item-dropdown right>
           <!-- Using 'button-content' slot -->
@@ -50,6 +54,9 @@
          <!-- <b-dropdown-item @click="$router.push('Profile')">Perfil</b-dropdown-item>-->
           <b-dropdown-item @click="$router.push({ path: `/profile/multimedia/${userId}` })">
             Perfil
+          </b-dropdown-item>
+          <b-dropdown-item @click="$router.push({ path: `/UserTags` })">
+            Etiquetas
           </b-dropdown-item>
           <b-dropdown-item href="/">Sign Out</b-dropdown-item>
         </b-nav-item-dropdown>
